@@ -22,12 +22,12 @@ class Project {
 
   removeToDo(todoId) {
     const initialLength = this.todosArray.length;
-    this.todosArray = this.todosArray.filter((todo) => todo.title !== todoId);
+    this.todosArray = this.todosArray.filter((todo) => todo.id !== todoId);
     return this.todosArray.length < initialLength;
   }
 
   getToDo(todoId) {
-    return this.todosArray.find((todo) => todo.title === todoId);
+    return this.todosArray.find((todo) => todo.id === todoId);
   }
 
   renameProject(newName) {

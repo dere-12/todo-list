@@ -11,14 +11,12 @@ function createProject(projectName) {
 // Note: projectName is used instead of projectId for testing purpose only. It will be replaced back to projectId.
 
 function removeProject(projectId) {
-  projectsArray = projectsArray.filter(
-    (project) => project.projectName !== projectId
-  );
+  projectsArray = projectsArray.filter((project) => project.id !== projectId);
 }
 
 function renameProject(projectId, newName) {
   const targetProject = projectsArray.find(
-    (project) => project.projectName === projectId
+    (project) => project.id === projectId
   );
 
   const updatedProjectName = targetProject.renameProject(newName);

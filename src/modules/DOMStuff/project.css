@@ -95,8 +95,8 @@ ul li {
   background-color: #303030;
   color: #ffffff;
   border-radius: 4px;
-  /* display: none;
-  flex-direction: column; */
+  display: none;
+  flex-direction: column;
 }
 
 .menu-wrapper .menu-options .menu-item {
