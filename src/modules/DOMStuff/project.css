@@ -1,0 +1,127 @@
+aside {
+  padding: 2rem;
+}
+
+.project-title {
+  position: relative;
+}
+
+.project-title h2 {
+  font-size: 1.8rem;
+  margin-left: 10px;
+}
+
+.project-title .title {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1.8rem;
+}
+
+.project-title .tooltip {
+  visibility: hidden;
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px;
+  border-radius: 2px;
+  border: 1px solid blue;
+  background-color: #010e1a;
+  /* color: #0174e3; */
+  color: #ffffff;
+  position: absolute;
+  bottom: 4px;
+  right: -2rem;
+  z-index: 1;
+}
+
+.new-button {
+  cursor: pointer;
+}
+ul li {
+  list-style: none;
+}
+.projects-container .project {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  margin-left: -1rem;
+  padding: 6px 10px;
+}
+
+.projects-container .project h3 {
+  cursor: pointer;
+}
+
+.projects-container .project p {
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.projects-container .project p span {
+  font-size: 1.3rem;
+}
+
+.projects-container .project button {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: none;
+  background-color: #141414;
+}
+
+.projects-container .project button img {
+  width: 25px;
+  height: 25px;
+  filter: invert(1);
+}
+
+.menu-wrapper {
+  position: relative;
+}
+
+.menu-wrapper .menu-options {
+  position: absolute;
+  left: 1.5rem;
+  top: 0;
+  border: 1px solid blue;
+  background-color: #303030;
+  color: #ffffff;
+  border-radius: 4px;
+  /* display: none;
+  flex-direction: column; */
+}
+
+.menu-wrapper .menu-options .menu-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.menu-options .delete {
+  color: #ff2a2a;
+  font-weight: bold;
+}
+
+.menu-options .menu-item:hover {
+  background-color: #202020;
+}
+
+.projects-container .project button:hover {
+  background-color: #000000;
+}
+
+.projects-container .project:hover {
+  background-color: #151616;
+}
+
+.projects-container .project p {
+  margin-right: -3rem;
+}

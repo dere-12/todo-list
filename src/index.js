@@ -1,4 +1,6 @@
 import "./style.css";
+import "./modules/DOMStuff/createProjectElements.js";
+import "./modules/DOMStuff/renderProject.js";
 import {
   createProject,
   projectsArray,
