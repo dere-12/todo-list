@@ -1,9 +1,14 @@
 import { projectsArray } from "../logic/manageProjects.js";
 import { getTargetProject } from "../logic/manageToDos.js";
+import { createProject } from "../logic/manageProjects.js";
+import { renderProject } from "./renderProjectElements.js";
 
 const newBtn = document.querySelector(".new-btn-js");
 const tooltip = document.querySelector(".tooltip");
 const projects = document.querySelectorAll(".projects-container");
+const projectDialog = document.querySelector("#projectDialog");
+const cancelBtn = document.querySelector("#projectDialog .cancel-btn");
+const projectNameInput = document.querySelector("#projectName");
 
 newBtn.addEventListener("mouseenter", () => {
   tooltip.style.visibility = "visible";
@@ -15,8 +20,24 @@ newBtn.addEventListener("mouseleave", () => {
 
 newBtn.addEventListener("click", newBtnHandler);
 
+cancelBtn.addEventListener("click", () => {
+  projectDialog.close();
+});
+
+projectDialog.addEventListener("close", () => {
+  if (projectDialog.returnValue === "create") {
+    const name = projectNameInput.value.trim();
+    if (name) {
+      createProject(name);
+      renderProject();
+    }
+  }
+});
+
 function newBtnHandler() {
   console.log("new btn clicked");
+  projectNameInput.value = "";
+  projectDialog.showModal();
 }
 
 projects.forEach((project) => {

@@ -17,6 +17,10 @@ aside {
   padding-bottom: 1.8rem;
 }
 
+.project-title .title span {
+  font-size: 1.2rem;
+}
+
 .project-title .tooltip {
   visibility: hidden;
   font-family: inherit;
@@ -36,7 +40,18 @@ aside {
 
 .new-button {
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 2px;
+  background-color: #238636;
+  color: #ffffff;
+  outline: none;
 }
+
 ul li {
   list-style: none;
 }
@@ -109,6 +124,55 @@ ul li {
 .menu-options .delete {
   color: #ff2a2a;
   font-weight: bold;
+}
+
+#projectDialog {
+  border: 1px solid blue;
+  border-radius: 4px;
+  background-color: #303030;
+  color: #ffffff;
+  position: absolute;
+  top: 9.3rem;
+  left: 20rem;
+  text-align: center;
+}
+
+#projectDialog input {
+  outline: none;
+  border: 2px solid #238636;
+  padding: 4px;
+  margin: 8px 0;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 150px;
+}
+
+#projectDialog div {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#projectDialog div button {
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 2px;
+}
+#projectDialog div .create-btn {
+  background-color: #238636;
+  color: #ffffff;
+}
+
+#projectDialog input:invalid {
+  border-color: #ff2a2a;
+}
+
+#projectDialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.555);
 }
 
 .menu-options .menu-item:hover {

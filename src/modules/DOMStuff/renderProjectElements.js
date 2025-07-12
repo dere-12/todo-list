@@ -9,7 +9,7 @@ aside.innerHTML = `
   <div class="project-title">
       <div class="title">
         <h2>My Projects</h2>
-        <button class="new-button new-btn-js">+ New</button>
+        <button class="new-button new-btn-js"><span>+</span> New</button>
       </div>
       <span class="tooltip">Create New Project</span>
   </div>
@@ -19,6 +19,7 @@ aside.innerHTML = `
 `;
 
 function renderProject() {
+  document.querySelector(".projects-container").innerHTML = "";
   projectsArray.forEach((project) => {
     const projectsContainer = document.querySelector(".projects-container");
     const li = document.createElement("li");
@@ -41,48 +42,54 @@ function renderProject() {
   });
 }
 
-function addNewProjectElement() {
-  const projectsContainer = document.querySelector(".projects-container");
-  const li = document.createElement("li");
-  //   li inside li???? this function may no longer use.
-  li.innerHTML = `
-    <li class="project">
-      <h3>General</h3>
-      <p> <span>+</span> Add ToDo</p>
-      <div class="menu-wrapper">
-        <button class="menu-button">
-          <img src="${threeDots} "width="20px" alt="kebab menu icon, dots vertical menu" />
-        </button>
-        <div class="menu-options">
-          <div class="menu-item rename">Rename</div>
-          <div class="menu-item delete">Delete</div>
-        </div>
+function renderNewProjectDialog() {
+  console.log("rnpd fn triggered");
+  const dialog = document.createElement("dialog");
+  dialog.id = "projectDialog";
+  // console.log(dialog);
+  dialog.innerHTML = `
+  <form method="dialog">
+      <h3>New Project</h3>
+      <input
+        type="text"
+        id="projectName"
+        placeholder="Enter project name"
+        required
+      />
+      <div>
+        <button type="button" class="cancel-btn">Cancel</button>
+        <button type="submit" class="create-btn" value="create">Create</button>
       </div>
-    </li>
+    </form>
   `;
-  projectsContainer.appendChild(li);
-}
-
-function renderDialogElement() {
+  document.body.appendChild(dialog);
+  // console.log(document.querySelector("#projectDialog"));
   // <dialog id="projectDialog">
-  //   <form method="dialog">
-  //     <h3>New Project</h3>
-  //     <input
-  //       type="text"
-  //       id="projectName"
-  //       placeholder="Enter project name"
-  //       required
-  //     />
-  //     <div>
-  //       <button type="button" class="close-btn" id="cancelBtn">
-  //         Cancel
-  //       </button>
-  //       <button type="submit" class="create-btn">
-  //         Create
-  //       </button>
-  //     </div>
-  //   </form>
+
   // </dialog>;
 }
+renderNewProjectDialog();
+
+// function addNewProjectElement() {
+//   const projectsContainer = document.querySelector(".projects-container");
+//   const li = document.createElement("li");
+//   //   li inside li???? this function may no longer use.
+//   li.innerHTML = `
+//     <li class="project">
+//       <h3>General</h3>
+//       <p> <span>+</span> Add ToDo</p>
+//       <div class="menu-wrapper">
+//         <button class="menu-button">
+//           <img src="${threeDots} "width="20px" alt="kebab menu icon, dots vertical menu" />
+//         </button>
+//         <div class="menu-options">
+//           <div class="menu-item rename">Rename</div>
+//           <div class="menu-item delete">Delete</div>
+//         </div>
+//       </div>
+//     </li>
+//   `;
+//   projectsContainer.appendChild(li);
+// }
 
 export { renderProject };
