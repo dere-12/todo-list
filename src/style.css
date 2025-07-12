@@ -14,7 +14,7 @@ body {
   height: 100%;
 
   display: grid;
-  grid-template-columns: 25% 75%;
+  grid-template-columns: 30% 70%;
   grid-template-rows: 80px calc(100% - 80px);
 }
 

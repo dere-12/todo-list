@@ -51,6 +51,7 @@ ul li {
 
 .projects-container .project h3 {
   cursor: pointer;
+  width: 140px;
 }
 
 .projects-container .project p {

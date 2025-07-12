@@ -1,5 +1,5 @@
 import "./style.css";
-import "./modules/DOMStuff/renderProjectElements.js";
+import { renderProject } from "./modules/DOMStuff/renderProjectElements.js";
 import "./modules/DOMStuff/projectEvents.js";
 import {
   createProject,
@@ -16,6 +16,11 @@ import {
 } from "./modules/logic/manageToDos.js";
 
 console.log("Webpack is Working!");
+
+createProject("Test Project");
+createProject("Proj-2");
+createProject("Test Project Name");
+renderProject();
 
 // const proj1 = createProject("xoGame");
 // const proj2 = createProject("personal");

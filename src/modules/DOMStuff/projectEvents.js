@@ -1,6 +1,9 @@
+import { projectsArray } from "../logic/manageProjects.js";
+import { getTargetProject } from "../logic/manageToDos.js";
+
 const newBtn = document.querySelector(".new-btn-js");
 const tooltip = document.querySelector(".tooltip");
-const projects = document.querySelectorAll(".project");
+const projects = document.querySelectorAll(".projects-container");
 
 newBtn.addEventListener("mouseenter", () => {
   tooltip.style.visibility = "visible";
@@ -24,16 +27,30 @@ function projectClickHandler(e) {
   const kebabIcon = e.target.closest(".menu-button");
   if (kebabIcon) {
     console.log("3dots clicked");
-    const projectMenuOptions = kebabIcon.nextElementSibling;
+    const projectMenuOption = kebabIcon.nextElementSibling;
     document.querySelectorAll(".menu-options").forEach((menu) => {
-      if (menu !== projectMenuOptions) menu.style.display = "none";
+      if (menu !== projectMenuOption) menu.style.display = "none";
     });
-    projectMenuOptions.style.display =
-      projectMenuOptions.style.display === "flex" ? "none" : "flex";
+    projectMenuOption.style.display =
+      projectMenuOption.style.display === "flex" ? "none" : "flex";
   }
 
   if (e.target.classList.contains("delete")) {
-    console.log("delete clicked");
+    const projectId = e.target.dataset.projectId;
+    const targetProject = getTargetProject(projectId);
+    console.log(`Delete ${targetProject.projectName}`);
+  }
+
+  if (e.target.classList.contains("rename")) {
+    const projectId = e.target.dataset.projectId;
+    const targetProject = getTargetProject(projectId);
+    console.log(`Rename ${targetProject.projectName}`);
+  }
+
+  if (e.target.classList.contains("project-name")) {
+    const projectId = e.target.dataset.projectId;
+    const targetProject = getTargetProject(projectId);
+    console.log(`${targetProject.projectName} clicked.`);
   }
 }
 

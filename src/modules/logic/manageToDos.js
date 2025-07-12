@@ -34,4 +34,11 @@ function editToDo(projectId, todoId, newToDoProperties) {
   targetTodo.updateToDo(newToDoProperties);
 }
 
-export { createToDo, removeToDo, toggleCompletion, updatePriority, editToDo };
+export {
+  createToDo,
+  removeToDo,
+  toggleCompletion,
+  updatePriority,
+  editToDo,
+  getTargetProject,
+};
