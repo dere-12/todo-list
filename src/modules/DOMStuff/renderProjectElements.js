@@ -37,6 +37,10 @@ function renderProject() {
             <div class="menu-item delete" data-project-id="${project.id}">Delete</div>
           </div>
         </div>
+        <div class="rename-wrapper" data-project-id="${project.id}">
+          <input type="text" id="rename-input" placeholder="Rename Your Project" />
+          <button>Rename</button>
+        </div>
     `;
     projectsContainer.appendChild(li);
   });
@@ -46,7 +50,6 @@ function renderNewProjectDialog() {
   console.log("rnpd fn triggered");
   const dialog = document.createElement("dialog");
   dialog.id = "projectDialog";
-  // console.log(dialog);
   dialog.innerHTML = `
   <form method="dialog">
       <h3>New Project</h3>
@@ -57,16 +60,12 @@ function renderNewProjectDialog() {
         required
       />
       <div>
-        <button type="button" class="cancel-btn">Cancel</button>
+        <button type="button" class="cancel-btn" value="cancel">Cancel</button>
         <button type="submit" class="create-btn" value="create">Create</button>
       </div>
     </form>
   `;
   document.body.appendChild(dialog);
-  // console.log(document.querySelector("#projectDialog"));
-  // <dialog id="projectDialog">
-
-  // </dialog>;
 }
 renderNewProjectDialog();
 

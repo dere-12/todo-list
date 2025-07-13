@@ -1,6 +1,6 @@
 import { projectsArray } from "../logic/manageProjects.js";
 import { getTargetProject } from "../logic/manageToDos.js";
-import { createProject } from "../logic/manageProjects.js";
+import { createProject, removeProject } from "../logic/manageProjects.js";
 import { renderProject } from "./renderProjectElements.js";
 
 const newBtn = document.querySelector(".new-btn-js");
@@ -9,6 +9,7 @@ const projects = document.querySelectorAll(".projects-container");
 const projectDialog = document.querySelector("#projectDialog");
 const cancelBtn = document.querySelector("#projectDialog .cancel-btn");
 const projectNameInput = document.querySelector("#projectName");
+// const renameInput = document.querySelector("#rename-input");
 
 newBtn.addEventListener("mouseenter", () => {
   tooltip.style.visibility = "visible";
@@ -21,17 +22,23 @@ newBtn.addEventListener("mouseleave", () => {
 newBtn.addEventListener("click", newBtnHandler);
 
 cancelBtn.addEventListener("click", () => {
+  projectNameInput.value = "";
   projectDialog.close();
 });
 
 projectDialog.addEventListener("close", () => {
-  if (projectDialog.returnValue === "create") {
+  if (
+    projectDialog.returnValue === "create" &&
+    projectDialog.returnValue !== ""
+  ) {
     const name = projectNameInput.value.trim();
     if (name) {
       createProject(name);
       renderProject();
     }
   }
+
+  projectNameInput.value = "";
 });
 
 function newBtnHandler() {
@@ -60,12 +67,21 @@ function projectClickHandler(e) {
     const projectId = e.target.dataset.projectId;
     const targetProject = getTargetProject(projectId);
     console.log(`Delete ${targetProject.projectName}`);
+
+    removeProject(projectId);
+    renderProject();
   }
 
   if (e.target.classList.contains("rename")) {
     const projectId = e.target.dataset.projectId;
     const targetProject = getTargetProject(projectId);
     console.log(`Rename ${targetProject.projectName}`);
+
+    const currentRenameWrapper = document.querySelector(
+      `.rename-wrapper[data-project-id="${projectId}"]`
+    );
+    currentRenameWrapper.style.display =
+      currentRenameWrapper.style.display === "flex" ? "none" : "flex";
   }
 
   if (e.target.classList.contains("project-name")) {
@@ -79,6 +95,6 @@ document.addEventListener("click", (e) => {
   if (!e.target.closest(".menu-wrapper")) {
     document
       .querySelectorAll(".menu-options")
-      .forEach((m) => (m.style.display = "none"));
+      .forEach((menu) => (menu.style.display = "none"));
   }
 });
