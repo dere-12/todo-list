@@ -33,13 +33,13 @@ function renderProject() {
             <img src="${threeDots} "width="20px" alt="kebab menu icon, dots vertical menu" />
           </button>
           <div class="menu-options">
-            <div class="menu-item rename" data-project-id="${project.id}">Rename</div>
+            <div class="menu-item rename-option" data-project-id="${project.id}">Rename</div>
             <div class="menu-item delete" data-project-id="${project.id}">Delete</div>
           </div>
         </div>
         <div class="rename-wrapper" data-project-id="${project.id}">
-          <input type="text" id="rename-input" placeholder="Rename Your Project" />
-          <button>Rename</button>
+          <input type="text" id="rename-input" placeholder="Rename Your Project" data-project-id="${project.id}" />
+          <button class="rename-btn" data-project-id="${project.id}">Rename</button>
         </div>
     `;
     projectsContainer.appendChild(li);
