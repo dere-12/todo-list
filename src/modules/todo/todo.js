@@ -33,11 +33,13 @@ class Todo {
     description = this.description,
     dueDate = this.dueDate,
     notes = this.notes,
+    priority = this.priority,
   }) {
     (this.title = title),
       (this.description = description),
       (this.dueDate = dueDate),
       (this.notes = notes);
+    this.priority = priority;
   }
 }
 

@@ -1,7 +1,6 @@
 import "./project.css";
 import threeDots from "../../images/dots-vertical-menu.svg";
 import { projectsArray } from "../logic/manageProjects.js";
-// import "./projectEvents.js";
 
 const aside = document.querySelector("aside");
 
@@ -68,27 +67,5 @@ function renderNewProjectDialog() {
   document.body.appendChild(dialog);
 }
 renderNewProjectDialog();
-
-// function addNewProjectElement() {
-//   const projectsContainer = document.querySelector(".projects-container");
-//   const li = document.createElement("li");
-//   //   li inside li???? this function may no longer use.
-//   li.innerHTML = `
-//     <li class="project">
-//       <h3>General</h3>
-//       <p> <span>+</span> Add ToDo</p>
-//       <div class="menu-wrapper">
-//         <button class="menu-button">
-//           <img src="${threeDots} "width="20px" alt="kebab menu icon, dots vertical menu" />
-//         </button>
-//         <div class="menu-options">
-//           <div class="menu-item rename">Rename</div>
-//           <div class="menu-item delete">Delete</div>
-//         </div>
-//       </div>
-//     </li>
-//   `;
-//   projectsContainer.appendChild(li);
-// }
 
 export { renderProject };

@@ -1,0 +1,20 @@
+.todo-project-name {
+  margin: 2rem 0 8px 2rem;
+}
+
+.todos-container .todo {
+  display: flex;
+  gap: 8rem;
+  margin-bottom: 10px;
+}
+
+.todo-left,
+.todo-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.todo-more {
+  display: flex;
+}

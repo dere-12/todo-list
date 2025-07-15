@@ -5,6 +5,7 @@ import {
   renameProject,
 } from "../logic/manageProjects.js";
 import { renderProject } from "./renderProjectElements.js";
+import { renderTodo } from "./renderToDoElements.js";
 
 const newBtn = document.querySelector(".new-btn-js");
 const tooltip = document.querySelector(".tooltip");
@@ -112,6 +113,7 @@ function projectClickHandler(e) {
     const projectId = e.target.dataset.projectId;
     const targetProject = getTargetProject(projectId);
     console.log(`${targetProject.projectName} clicked.`);
+    renderTodo(projectId);
   }
 }
 
