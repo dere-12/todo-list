@@ -2,6 +2,11 @@
   margin: 2rem 0 8px 2rem;
 }
 
+.todos-container li {
+  margin: 0 0 12px 1rem;
+  padding: 6px;
+}
+
 .todos-container .todo {
   display: flex;
   gap: 8rem;
@@ -13,8 +18,81 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.show-more-btn {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: none;
+  background-color: #141414;
+}
+
+.show-more-btn img {
+  width: 25px;
+  height: 25px;
+  filter: invert(1);
+}
+
+.show-more-btn:hover {
+  background-color: #000000;
 }
 
 .todo-more {
   display: flex;
+  align-items: start;
+  gap: 1rem;
+  margin-left: 10px;
+}
+
+.todo-more .btns button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.todo-delete-btn {
+  background-color: rgb(245, 129, 129);
+  color: #ff0000;
+}
+
+.desc,
+.notes {
+  width: 200px;
+  /* font-size: 13px; */
+  /* border: 1px solid red; */
+}
+
+.desc > p,
+.notes > p {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  background-color: #000000;
+  padding: 2px 3px 4px 6px;
+}
+
+.desc > h4,
+.notes > h4 {
+  margin-left: 2.5rem;
+}
+
+.todo-more > div > h4 {
+  margin-bottom: 4px;
+  color: aqua;
+}
+
+.todos-container li:hover {
+  background-color: #1d1f1f;
 }

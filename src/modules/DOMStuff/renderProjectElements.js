@@ -29,7 +29,7 @@ function renderProject() {
         <p> <span>+</span> Add ToDo</p>
         <div class="menu-wrapper">
           <button class="menu-button">
-            <img src="${threeDots} "width="20px" alt="kebab menu icon, dots vertical menu" />
+            <img src="${threeDots}" width="20px" alt="kebab menu icon, dots vertical menu" />
           </button>
           <div class="menu-options">
             <div class="menu-item rename-option" data-project-id="${project.id}">Rename</div>
