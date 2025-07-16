@@ -109,6 +109,12 @@ function projectClickHandler(e) {
     }
   }
 
+  if (e.target.classList.contains("add-todo")) {
+    const newTodoDialog = document.querySelector("#newTodoDialog");
+    newTodoDialog.showModal();
+    console.log("Add todo clicked");
+  }
+
   if (e.target.classList.contains("project-name")) {
     const projectId = e.target.dataset.projectId;
     const targetProject = getTargetProject(projectId);

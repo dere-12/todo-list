@@ -71,8 +71,6 @@
 .desc,
 .notes {
   width: 200px;
-  /* font-size: 13px; */
-  /* border: 1px solid red; */
 }
 
 .desc > p,
@@ -95,4 +93,92 @@
 
 .todos-container li:hover {
   background-color: #1d1f1f;
+}
+
+#newTodoDialog {
+  width: 600px;
+  border: 1px solid blue;
+  border-radius: 4px;
+  background-color: #303030;
+  color: #ffffff;
+  position: absolute;
+  top: 3rem;
+  left: 26rem;
+}
+
+#newTodoDialog > form {
+  display: flex;
+  flex-direction: column;
+}
+
+#newTodoDialog > form h3 {
+  align-self: center;
+  margin-bottom: 1.8rem;
+  font-size: 1.5rem;
+}
+
+#newTodoDialog input:invalid {
+  border-color: #ff2a2a;
+}
+
+.todo-info-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+  gap: 1rem;
+}
+
+.todo-info-left > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.3rem;
+}
+
+#select-priority {
+  margin-left: 10px;
+}
+
+.todo-info-container input,
+.todo-info-container select,
+.todo-info-right textarea {
+  width: 150px;
+  padding: 4px 10px;
+  outline: none;
+  border: 1px solid blue;
+  border-radius: 3px;
+}
+
+.todo-info-right {
+  margin-top: -10px;
+}
+
+.todo-info-right textarea {
+  display: block;
+  margin-bottom: 12px;
+  width: 180px;
+  min-height: 50px;
+  resize: vertical;
+  overflow-y: auto;
+}
+
+.create-todo-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.7rem;
+  padding: 0 3rem;
+}
+
+.create-todo-btns button {
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 2px;
+}
+
+.create-todo-btns .todo-create-btn {
+  background-color: #238636;
+  color: #ffffff;
 }

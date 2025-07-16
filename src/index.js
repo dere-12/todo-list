@@ -1,6 +1,7 @@
 import "./style.css";
 import { renderProject } from "./modules/DOMStuff/renderProjectElements.js";
 import "./modules/DOMStuff/projectEvents.js";
+import "./modules/DOMStuff/toDoEvents.js";
 import {
   createProject,
   projectsArray,
