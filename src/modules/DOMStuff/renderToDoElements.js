@@ -3,10 +3,13 @@ import threeDots from "../../images/dots-vertical-menu.svg";
 import editIcon from "../../images/pencil.svg";
 import deleteIcon from "../../images/trash-can.svg";
 import { getTargetProject } from "../logic/manageToDos.js";
+import { projectsArray } from "../logic/manageProjects.js";
 
 const main = document.querySelector("main");
+// let projectId = projectsArray[0].id;
 
 function renderTodo(projectId) {
+  // projectId = projectId;
   const targetProject = getTargetProject(projectId);
   const todoArray = targetProject.todosArray;
 
@@ -77,13 +80,15 @@ function renderLiElements(todoArray) {
   todosContainer.appendChild(li);
 }
 
-function renderAddToDoDialog() {
-  console.log("todo dialog triggered");
+function renderAddToDoDialog(targetProject) {
+  // const targetObj = getTargetProject(projectId);
+  console.log(`${targetProject.projectName} dialog opened.`);
   const dialog = document.createElement("dialog");
   dialog.id = "newTodoDialog";
+  // dialog.innerHTML = "";
   dialog.innerHTML = `
-  <form method="dialog">
-      <h3>Create New Todo For Your Project</h3>
+    <form method="dialog">
+      <h3>Create New Todo For ${targetProject.projectName}</h3>
       <div class="todo-info-container">
         <div class="todo-info-left">
           <div>
@@ -117,12 +122,12 @@ function renderAddToDoDialog() {
       </div>
       <div class="create-todo-btns">
         <button type="button" class="todo-cancel-btn" value="cancel">Cancel</button>
-        <button type="submit" class="todo-create-btn" value="create">Create</button>
+        <button type="submit" class="todo-create-btn" value="create" data-project-id="${targetProject.id}">Create</button>
       </div>
     </form>
   `;
   document.body.appendChild(dialog);
 }
-renderAddToDoDialog();
+// renderAddToDoDialog(projectId);
 
-export { renderTodo, renderLiElements };
+export { renderTodo, renderLiElements, renderAddToDoDialog };

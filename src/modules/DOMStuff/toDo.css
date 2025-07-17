@@ -121,6 +121,10 @@
   border-color: #ff2a2a;
 }
 
+#newTodoDialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.555);
+}
+
 .todo-info-container {
   display: flex;
   justify-content: space-around;

@@ -26,7 +26,7 @@ function renderProject() {
     // li.dataset.projectId = project.id;
     li.innerHTML = `
         <h3 class="project-name" data-project-id="${project.id}">${project.projectName}</h3>
-        <p class="add-todo"><span>+</span>Add ToDo</p>
+        <p class="add-todo" data-project-id="${project.id}"><span>+</span>Add ToDo</p>
         <div class="menu-wrapper">
           <button class="menu-button">
             <img src="${threeDots}" width="20px" alt="kebab menu icon, dots vertical menu" />

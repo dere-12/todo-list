@@ -5,7 +5,12 @@ import {
   renameProject,
 } from "../logic/manageProjects.js";
 import { renderProject } from "./renderProjectElements.js";
-import { renderTodo, renderLiElements } from "./renderToDoElements.js";
+import {
+  renderTodo,
+  renderLiElements,
+  renderAddToDoDialog,
+} from "./renderToDoElements.js";
+import { newTodoDialogEvents } from "./toDoEvents.js";
 
 const newBtn = document.querySelector(".new-btn-js");
 const tooltip = document.querySelector(".tooltip");
@@ -110,9 +115,17 @@ function projectClickHandler(e) {
   }
 
   if (e.target.classList.contains("add-todo")) {
+    const projectId = e.target.dataset.projectId;
+    const targetProject = getTargetProject(projectId);
+    const previousNewTodoDialog = document.querySelector("#newTodoDialog");
+    if (previousNewTodoDialog) {
+      document.body.removeChild(previousNewTodoDialog);
+    }
+    renderAddToDoDialog(targetProject);
+    newTodoDialogEvents();
     const newTodoDialog = document.querySelector("#newTodoDialog");
     newTodoDialog.showModal();
-    console.log("Add todo clicked");
+    console.log(`Add todo of ${targetProject.projectName} clicked.`);
   }
 
   if (e.target.classList.contains("project-name")) {
