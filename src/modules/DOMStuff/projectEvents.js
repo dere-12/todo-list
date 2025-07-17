@@ -10,7 +10,7 @@ import {
   renderLiElements,
   renderAddToDoDialog,
 } from "./renderToDoElements.js";
-import { newTodoDialogEvents } from "./toDoEvents.js";
+import { newTodoDialogEvents, todoLiEvents } from "./toDoEvents.js";
 
 const newBtn = document.querySelector(".new-btn-js");
 const tooltip = document.querySelector(".tooltip");
@@ -134,6 +134,7 @@ function projectClickHandler(e) {
     console.log(`${targetProject.projectName} clicked.`);
     const todoArray = renderTodo(projectId);
     renderLiElements(todoArray);
+    todoLiEvents();
   }
 }
 

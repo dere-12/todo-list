@@ -33,7 +33,7 @@ function renderLiElements(todoArray) {
     li.innerHTML = `
         <div class="todo">
           <div class="todo-left">
-            <input type="checkbox" id="checkbox"/>
+            <input type="checkbox" class="todo-checkbox" id="checkbox"/>
             <p>Todo Title</p>
           </div>
           <div class="todo-right">

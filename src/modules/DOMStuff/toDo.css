@@ -45,7 +45,7 @@
 }
 
 .todo-more {
-  display: flex;
+  display: none;
   align-items: start;
   gap: 1rem;
   margin-left: 10px;

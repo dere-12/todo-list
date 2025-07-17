@@ -37,6 +37,7 @@ function newTodoDialogEvents() {
 
       const todoArray = renderTodo(projectId);
       renderLiElements(todoArray);
+      todoLiEvents();
 
       form.reset();
       console.log(todoArray);
@@ -48,4 +49,35 @@ function newTodoDialogEvents() {
   });
 }
 
-export { newTodoDialogEvents };
+function todoLiEvents() {
+  const todosContainer = document.querySelector(".todos-container");
+
+  todosContainer.addEventListener("click", todoClickHandler);
+
+  function todoClickHandler(e) {
+    if (e.target.closest(".show-more-btn")) {
+      console.log("3dots clicked");
+      const todoMoreParent = e.target.closest(".todo");
+      const currentTodoMore = todoMoreParent.nextElementSibling;
+      document.querySelectorAll(".todo-more").forEach((todoMore) => {
+        if (todoMore !== currentTodoMore) todoMore.style.display = "none";
+      });
+      currentTodoMore.style.display =
+        currentTodoMore.style.display === "flex" ? "none" : "flex";
+    }
+
+    if (e.target.closest(".todo-checkbox")) {
+      console.log("checkbox clicked");
+    }
+
+    if (e.target.closest(".todo-edit-btn")) {
+      console.log("edit clicked");
+    }
+
+    if (e.target.closest(".todo-delete-btn")) {
+      console.log("delete clicked");
+    }
+  }
+}
+
+export { newTodoDialogEvents, todoLiEvents };
