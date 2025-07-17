@@ -1,4 +1,4 @@
-import { getTargetProject } from "../logic/manageToDos.js";
+import { getTargetProject, removeToDo } from "../logic/manageToDos.js";
 import { createToDo } from "../logic/manageToDos.js";
 import { renderLiElements, renderTodo } from "./renderToDoElements.js";
 
@@ -35,12 +35,13 @@ function newTodoDialogEvents() {
         notes,
       });
 
-      const todoArray = renderTodo(projectId);
-      renderLiElements(todoArray);
+      // const todoArray = renderTodo(projectId);
+      renderTodo(projectId);
+      renderLiElements(projectId);
       todoLiEvents();
 
       form.reset();
-      console.log(todoArray);
+      // console.log(todoArray);
       console.log(
         `New todo created for: ${targetProject.projectName} and here it is:`
       );
@@ -75,7 +76,17 @@ function todoLiEvents() {
     }
 
     if (e.target.closest(".todo-delete-btn")) {
+      const projectId = e.target.closest(".todo-delete-btn").dataset.projectId;
+      const todoId = e.target.closest(".todo-delete-btn").dataset.todoId;
       console.log("delete clicked");
+      console.log(`
+          project id: ${projectId}
+          todo id: ${todoId}
+        `);
+      removeToDo(projectId, todoId);
+      renderTodo(projectId);
+      renderLiElements(projectId);
+      todoLiEvents();
     }
   }
 }

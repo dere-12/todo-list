@@ -72,11 +72,13 @@ function projectClickHandler(e) {
 
   if (e.target.classList.contains("delete")) {
     const projectId = e.target.dataset.projectId;
+    const main = document.querySelector("main");
     // const targetProject = getTargetProject(projectId);
     // console.log(`Delete ${targetProject.projectName}`);
 
     removeProject(projectId);
     renderProject();
+    main.innerHTML = "";
   }
 
   if (e.target.classList.contains("rename-option")) {
@@ -111,6 +113,9 @@ function projectClickHandler(e) {
       renameWrapper.style.display = "none";
       renameProject(projectId, newName);
       renderProject();
+      renderTodo(projectId);
+      renderLiElements(projectId);
+      todoLiEvents();
     }
   }
 
@@ -132,8 +137,9 @@ function projectClickHandler(e) {
     const projectId = e.target.dataset.projectId;
     const targetProject = getTargetProject(projectId);
     console.log(`${targetProject.projectName} clicked.`);
-    const todoArray = renderTodo(projectId);
-    renderLiElements(todoArray);
+    // const todoArray = renderTodo(projectId);
+    renderTodo(projectId);
+    renderLiElements(projectId);
     todoLiEvents();
   }
 }
@@ -160,5 +166,11 @@ document.addEventListener("click", (e) => {
       .forEach((rw) => {
         rw.style.display = "none";
       });
+  }
+
+  if (!e.target.closest(".todos-container li")) {
+    document.querySelectorAll(".todo-more").forEach((tm) => {
+      tm.style.display = "none";
+    });
   }
 });

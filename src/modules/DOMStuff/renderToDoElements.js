@@ -11,7 +11,7 @@ const main = document.querySelector("main");
 function renderTodo(projectId) {
   // projectId = projectId;
   const targetProject = getTargetProject(projectId);
-  const todoArray = targetProject.todosArray;
+  // const todoArray = targetProject.todosArray;
 
   main.innerHTML = `
   <h3 class="todo-project-name">${targetProject.projectName}</h3>
@@ -20,11 +20,13 @@ function renderTodo(projectId) {
   </ul>
   `;
 
-  return todoArray;
+  // return todoArray;
 }
 
-function renderLiElements(todoArray) {
+function renderLiElements(projectId) {
   const todosContainer = document.querySelector(".todos-container");
+  const targetProject = getTargetProject(projectId);
+  const todoArray = targetProject.todosArray;
   // console.log(todosContainer);
 
   todoArray.forEach((todo) => {
@@ -73,7 +75,7 @@ function renderLiElements(todoArray) {
             </button>
           </div>
           <div class="btns">
-            <button class="todo-delete-btn">
+            <button class="todo-delete-btn" data-project-id=${projectId} data-todo-id="${todo.id}">
               <img src="${deleteIcon}" width="16px" alt="trash can svg, delete icon" /> <span>Delete</span>
             </button>
           </div>
