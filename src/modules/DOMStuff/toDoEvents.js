@@ -1,5 +1,6 @@
 import { getTargetProject } from "../logic/manageToDos.js";
 import { createToDo } from "../logic/manageToDos.js";
+import { renderLiElements, renderTodo } from "./renderToDoElements.js";
 
 function newTodoDialogEvents() {
   const newTodoDialog = document.querySelector("#newTodoDialog");
@@ -34,7 +35,11 @@ function newTodoDialogEvents() {
         notes,
       });
 
+      const todoArray = renderTodo(projectId);
+      renderLiElements(todoArray);
+
       form.reset();
+      console.log(todoArray);
       console.log(
         `New todo created for: ${targetProject.projectName} and here it is:`
       );

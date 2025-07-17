@@ -20,64 +20,67 @@ function renderTodo(projectId) {
   </ul>
   `;
 
-  return "todo Array";
+  return todoArray;
 }
 
 function renderLiElements(todoArray) {
   const todosContainer = document.querySelector(".todos-container");
-  const li = document.createElement("li");
-  console.log(todosContainer);
-  console.log(todoArray + ". Received!");
-  li.innerHTML = `
-      <div class="todo">
-        <div class="todo-left">
-          <input type="checkbox" id="checkbox"/>
-          <p>Todo Title</p>
+  // console.log(todosContainer);
+
+  todoArray.forEach((todo) => {
+    const li = document.createElement("li");
+    console.log(todoArray + ". Received!");
+    li.innerHTML = `
+        <div class="todo">
+          <div class="todo-left">
+            <input type="checkbox" id="checkbox"/>
+            <p>Todo Title</p>
+          </div>
+          <div class="todo-right">
+            <p>Priority</p>
+            <p>dueDate</p>
+            <button class="show-more-btn"><img src="${threeDots}" width="20px" alt="kebab menu icon, dots vertical menu" /></button>
+          </div>
         </div>
-        <div class="todo-right">
-          <p>Priority</p>
-          <p>dueDate</p>
-          <button class="show-more-btn"><img src="${threeDots}" width="20px" alt="kebab menu icon, dots vertical menu" /></button>
+        <div class="todo-more">
+          <div class="desc">
+            <h4>Description</h4>
+            <p>
+              My todo description goes here..
+              My todo description goes here..
+              My todo description goes here..
+            </p>
+          </div>
+          <div>
+            <h4>Creation Date</h4>
+            <p>dd/mm/yy</p>
+          </div>
+          <div>
+            <h4>Completion</h4>
+            <p>Not completed</p>
+          </div>
+          <div class="notes">
+            <h4>Note</h4>
+            <p>
+              My todo note goes here...
+              My todo note goes here...
+              My todo note goes here...
+            </p>
+          </div>
+          <div class="btns">
+            <button class="todo-edit-btn">
+              <img src="${editIcon}" width="16px" alt="pencil svg, edit icon" /> <span>Edit</span>
+            </button>
+          </div>
+          <div class="btns">
+            <button class="todo-delete-btn">
+              <img src="${deleteIcon}" width="16px" alt="trash can svg, delete icon" /> <span>Delete</span>
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="todo-more">
-        <div class="desc">
-          <h4>Description</h4>
-          <p>
-            My todo description goes here..
-            My todo description goes here..
-            My todo description goes here..
-          </p>
-        </div>
-        <div>
-          <h4>Creation Date</h4>
-          <p>dd/mm/yy</p>
-        </div>
-        <div>
-          <h4>Completion</h4>
-          <p>Not completed</p>
-        </div>
-        <div class="notes">
-          <h4>Note</h4>
-          <p>
-            My todo note goes here...
-            My todo note goes here...
-            My todo note goes here...
-          </p>
-        </div>
-        <div class="btns">
-          <button class="todo-edit-btn">
-            <img src="${editIcon}" width="16px" alt="pencil svg, edit icon" /> <span>Edit</span>
-          </button>
-        </div>
-        <div class="btns">
-          <button class="todo-delete-btn">
-            <img src="${deleteIcon}" width="16px" alt="trash can svg, delete icon" /> <span>Delete</span>
-          </button>
-        </div>
-      </div>
-    `;
-  todosContainer.appendChild(li);
+      `;
+    todosContainer.appendChild(li);
+  });
 }
 
 function renderAddToDoDialog(targetProject) {

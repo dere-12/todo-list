@@ -46,7 +46,7 @@ function renderProject() {
 }
 
 function renderNewProjectDialog() {
-  console.log("rnpd fn triggered");
+  // console.log("rnpd fn triggered");
   const dialog = document.createElement("dialog");
   dialog.id = "projectDialog";
   dialog.innerHTML = `
