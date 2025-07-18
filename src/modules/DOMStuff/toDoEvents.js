@@ -94,9 +94,14 @@ function todoLiEvents() {
     if (e.target.closest(".todo-edit-btn")) {
       console.log("edit clicked");
       const projectId = e.target.closest(".todo-edit-btn").dataset.projectId;
-      const targetTodo = e.target.closest(".todo-edit-btn").dataset.todo;
+      const todoId = e.target.closest(".todo-edit-btn").dataset.todoId;
+      const previousNewTodoDialog = document.querySelector("#updateTodoDialog");
+      if (previousNewTodoDialog) {
+        document.body.removeChild(previousNewTodoDialog);
+      }
 
-      renderEditToDoDialog(projectId, targetTodo);
+      renderEditToDoDialog(projectId, todoId);
+      //editToDoEvents...
       const updateTodoDialog = document.querySelector("#updateTodoDialog");
       updateTodoDialog.showModal();
     }

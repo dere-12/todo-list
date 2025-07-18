@@ -76,7 +76,9 @@ function renderLiElements(projectId) {
             </p>
           </div>
           <div class="btns">
-            <button class="todo-edit-btn" data-project-id=${projectId} data-todo-id="${todo}">
+            <button class="todo-edit-btn" data-project-id=${projectId} data-todo-id="${
+      todo.id
+    }">
               <img src="${editIcon}" width="16px" alt="pencil svg, edit icon" /> <span>Edit</span>
             </button>
           </div>
@@ -143,14 +145,19 @@ function renderAddToDoDialog(targetProject) {
 }
 // renderAddToDoDialog(projectId);
 
-function renderEditToDoDialog(projectId, targetTodo) {
+function renderEditToDoDialog(projectId, todoId) {
   const targetProject = getTargetProject(projectId);
-  // console.log(`${targetProject.projectName} dialog opened.`);
+  const todoArray = targetProject.todosArray;
+  const targetTodo = todoArray.find((todo) => todo.id === todoId);
+  console.log(`
+    update-projectId: ${targetProject.projectName}.
+    target todo: ${targetTodo.title}
+    `);
   const dialog = document.createElement("dialog");
   dialog.id = "updateTodoDialog";
   dialog.innerHTML = `
     <form method="dialog">
-      <h3>Update  todo</h3>
+      <h3>Update ${targetTodo.title} todo</h3>
       <div class="todo-info-container">
         <div class="todo-info-left">
           <div>
