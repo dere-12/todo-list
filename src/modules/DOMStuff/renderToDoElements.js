@@ -42,38 +42,32 @@ function renderLiElements(projectId) {
               data-project-id="${projectId}"
               data-todo-id="${todo.id}"
             />
-            <p>Todo Title</p>
+            <p>Todo Title: ${todo.title}</p>
           </div>
           <div class="todo-right">
-            <p>Priority</p>
-            <p>dueDate</p>
+            <p>Priority: ${todo.priority}</p>
+            <p>dueDate: ${todo.dueDate}</p>
             <button class="show-more-btn"><img src="${threeDots}" width="20px" alt="kebab menu icon, dots vertical menu" /></button>
           </div>
         </div>
         <div class="todo-more">
           <div class="desc">
             <h4>Description</h4>
-            <p>
-              My todo description goes here..
-              My todo description goes here..
-              My todo description goes here..
-            </p>
+            <p>${todo.description}</p>
           </div>
           <div>
             <h4>Creation Date</h4>
-            <p>dd/mm/yy</p>
+            <p id="creation-date-para">${todo.creationDate}</p>
           </div>
           <div>
             <h4>Completion</h4>
-            <p>${todo.isCompleted === true ? "Completed" : "Not Completed"}</p>
+            <p id="completion-para">${
+              todo.isCompleted === true ? "Completed" : "Not Completed"
+            }</p>
           </div>
           <div class="notes">
             <h4>Note</h4>
-            <p>
-              My todo note goes here...
-              My todo note goes here...
-              My todo note goes here...
-            </p>
+            <p>${todo.notes}</p>
           </div>
           <div class="btns">
             <button class="todo-edit-btn" data-project-id=${projectId} data-todo-id="${
@@ -162,11 +156,11 @@ function renderEditToDoDialog(projectId, todoId) {
         <div class="todo-info-left">
           <div>
             <label for="todo-title">Title:</label>
-            <input type="text" id="todo-title" placeholder="Todo Title"/>
+            <input type="text" id="todo-title" value="${targetTodo.title}" placeholder="Todo Title"/>
           </div>
           <div>
             <label for="due-date">Due Date:</label>
-            <input type="date" id="due-date" />
+            <input type="date" value="${targetTodo.dueDate}" id="due-date" />
           </div>
           <div>
             <label for="select-priority">Select Priority: </label>
@@ -181,17 +175,17 @@ function renderEditToDoDialog(projectId, todoId) {
         <div class="todo-info-right">
           <div>
             <label for="short-desc">Short Description:</label>
-            <textarea id="short-desc"></textarea>
+            <textarea id="short-desc">${targetTodo.description}</textarea>
           </div>
           <div>
             <label for="todo-note">Note:</label>
-            <textarea id="todo-note"></textarea>
+            <textarea id="todo-note">${targetTodo.notes}</textarea>
           </div>
         </div>
       </div>
       <div class="update-todo-btns">
         <button type="button" class="todo-discard-btn" value="discard">Discard Changes</button>
-        <button type="submit" class="todo-save-btn" value="save">Save Changes</button>
+        <button type="submit" class="todo-save-btn" value="save" data-project-id="${projectId}" data-todo-id="${targetTodo.id}">Save Changes</button>
       </div>
     </form>
   `;

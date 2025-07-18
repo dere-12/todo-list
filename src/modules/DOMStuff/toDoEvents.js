@@ -1,9 +1,11 @@
 import {
+  editToDo,
   getTargetProject,
   removeToDo,
   toggleCompletion,
+  createToDo,
 } from "../logic/manageToDos.js";
-import { createToDo } from "../logic/manageToDos.js";
+// import { createToDo } from "../logic/manageToDos.js";
 import {
   renderEditToDoDialog,
   renderLiElements,
@@ -29,31 +31,37 @@ function newTodoDialogEvents() {
         newTodoDialog.querySelector(".todo-create-btn").dataset.projectId;
       const targetProject = getTargetProject(projectId);
 
-      const title = newTodoDialog.querySelector("#todo-title").value;
-      const description = newTodoDialog.querySelector("#short-desc").value;
-      const dueDate = newTodoDialog.querySelector("#due-date").value;
-      const priority = newTodoDialog.querySelector("#select-priority").value;
-      const notes = newTodoDialog.querySelector("#todo-note").value;
+      const title = newTodoDialog.querySelector("#todo-title").value.trim();
+      const description = newTodoDialog
+        .querySelector("#short-desc")
+        .value.trim();
+      const dueDate = newTodoDialog.querySelector("#due-date").value.trim();
+      const priority = newTodoDialog
+        .querySelector("#select-priority")
+        .value.trim();
+      const notes = newTodoDialog.querySelector("#todo-note").value.trim();
 
-      createToDo(projectId, {
-        title,
-        description,
-        dueDate,
-        priority,
-        notes,
-      });
+      if ((title !== "" && description) || dueDate || priority || notes) {
+        createToDo(projectId, {
+          title,
+          description,
+          dueDate,
+          priority,
+          notes,
+        });
 
-      // const todoArray = renderTodo(projectId);
-      renderTodo(projectId);
-      renderLiElements(projectId);
-      todoLiEvents();
+        // const todoArray = renderTodo(projectId);
+        renderTodo(projectId);
+        renderLiElements(projectId);
+        todoLiEvents();
 
-      form.reset();
-      // console.log(todoArray);
-      console.log(
-        `New todo created for: ${targetProject.projectName} and here it is:`
-      );
-      console.log(targetProject);
+        form.reset();
+        // console.log(todoArray);
+        console.log(
+          `New todo created for: ${targetProject.projectName} and here it is:`
+        );
+        console.log(targetProject);
+      }
     }
   });
 }
@@ -101,7 +109,7 @@ function todoLiEvents() {
       }
 
       renderEditToDoDialog(projectId, todoId);
-      //editToDoEvents...
+      updateTodoDialogEvents();
       const updateTodoDialog = document.querySelector("#updateTodoDialog");
       updateTodoDialog.showModal();
     }
@@ -122,6 +130,50 @@ function todoLiEvents() {
   }
 }
 
-// function updateTodoDialogEvents() {}
+function updateTodoDialogEvents() {
+  const updateTodoDialog = document.querySelector("#updateTodoDialog");
+  const discardChangesBtn = document.querySelector(
+    "#updateTodoDialog .todo-discard-btn"
+  );
+
+  discardChangesBtn.addEventListener("click", () => {
+    updateTodoDialog.close();
+  });
+
+  updateTodoDialog.addEventListener("close", () => {
+    if (updateTodoDialog.returnValue === "save") {
+      console.log("change saved");
+      const form = updateTodoDialog.querySelector("form");
+      const projectId =
+        updateTodoDialog.querySelector(".todo-save-btn").dataset.projectId;
+      const todoId =
+        updateTodoDialog.querySelector(".todo-save-btn").dataset.todoId;
+
+      const title = updateTodoDialog.querySelector("#todo-title").value.trim();
+      const description = updateTodoDialog
+        .querySelector("#short-desc")
+        .value.trim();
+      const dueDate = updateTodoDialog.querySelector("#due-date").value.trim();
+      const priority = updateTodoDialog
+        .querySelector("#select-priority")
+        .value.trim();
+      const notes = updateTodoDialog.querySelector("#todo-note").value.trim();
+
+      if ((title !== "" && description) || dueDate || priority || notes) {
+        editToDo(projectId, todoId, {
+          title,
+          description,
+          dueDate,
+          priority,
+          notes,
+        });
+
+        renderTodo(projectId);
+        renderLiElements(projectId);
+        todoLiEvents();
+      }
+    }
+  });
+}
 
 export { newTodoDialogEvents, todoLiEvents };

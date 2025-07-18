@@ -47,7 +47,7 @@
 .todo-more {
   display: none;
   align-items: start;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-left: 10px;
 }
 
@@ -70,7 +70,7 @@
 
 .desc,
 .notes {
-  width: 200px;
+  width: 150px;
 }
 
 .desc > p,
@@ -78,17 +78,24 @@
   font-size: 0.78rem;
   line-height: 1.5;
   background-color: #000000;
-  padding: 2px 3px 4px 6px;
+  padding: 2px 3px 4px 10px;
 }
 
-.desc > h4,
+/* .desc > h4,
 .notes > h4 {
-  margin-left: 2.5rem;
-}
+  margin-left: 2rem;
+} */
 
 .todo-more > div > h4 {
   margin-bottom: 4px;
   color: aqua;
+}
+
+#creation-date-para,
+#completion-para {
+  margin-left: 4px;
+  font-size: 12px;
+  /* color: red; */
 }
 
 .todos-container li:hover {
