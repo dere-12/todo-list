@@ -1,4 +1,4 @@
-import "./toDo.css";
+import "./toDos.css";
 import threeDots from "../../images/dots-vertical-menu.svg";
 import editIcon from "../../images/pencil.svg";
 import deleteIcon from "../../images/trash-can.svg";
@@ -35,7 +35,13 @@ function renderLiElements(projectId) {
     li.innerHTML = `
         <div class="todo">
           <div class="todo-left">
-            <input type="checkbox" class="todo-checkbox" id="checkbox"/>
+            <input
+              type="checkbox"
+              class="todo-checkbox"
+              id="checkbox"
+              data-project-id="${projectId}"
+              data-todo-id="${todo.id}"
+            />
             <p>Todo Title</p>
           </div>
           <div class="todo-right">
@@ -59,7 +65,7 @@ function renderLiElements(projectId) {
           </div>
           <div>
             <h4>Completion</h4>
-            <p>Not completed</p>
+            <p>${todo.isCompleted === true ? "Completed" : "Not Completed"}</p>
           </div>
           <div class="notes">
             <h4>Note</h4>
@@ -70,13 +76,15 @@ function renderLiElements(projectId) {
             </p>
           </div>
           <div class="btns">
-            <button class="todo-edit-btn">
+            <button class="todo-edit-btn" data-project-id=${projectId} data-todo-id="${todo}">
               <img src="${editIcon}" width="16px" alt="pencil svg, edit icon" /> <span>Edit</span>
             </button>
           </div>
           <div class="btns">
-            <button class="todo-delete-btn" data-project-id=${projectId} data-todo-id="${todo.id}">
-              <img src="${deleteIcon}" width="16px" alt="trash can svg, delete icon" /> <span>Delete</span>
+            <button class="todo-delete-btn" data-project-id=${projectId} data-todo-id="${
+      todo.id
+    }">
+                <img src="${deleteIcon}" width="16px" alt="trash can svg, delete icon" /><span>Delete</span>
             </button>
           </div>
         </div>
@@ -135,4 +143,57 @@ function renderAddToDoDialog(targetProject) {
 }
 // renderAddToDoDialog(projectId);
 
-export { renderTodo, renderLiElements, renderAddToDoDialog };
+function renderEditToDoDialog(projectId, targetTodo) {
+  const targetProject = getTargetProject(projectId);
+  // console.log(`${targetProject.projectName} dialog opened.`);
+  const dialog = document.createElement("dialog");
+  dialog.id = "updateTodoDialog";
+  dialog.innerHTML = `
+    <form method="dialog">
+      <h3>Update  todo</h3>
+      <div class="todo-info-container">
+        <div class="todo-info-left">
+          <div>
+            <label for="todo-title">Title:</label>
+            <input type="text" id="todo-title" placeholder="Todo Title"/>
+          </div>
+          <div>
+            <label for="due-date">Due Date:</label>
+            <input type="date" id="due-date" />
+          </div>
+          <div>
+            <label for="select-priority">Select Priority: </label>
+            <select id="select-priority">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </div>
+        </div>
+        <div class="todo-info-right">
+          <div>
+            <label for="short-desc">Short Description:</label>
+            <textarea id="short-desc"></textarea>
+          </div>
+          <div>
+            <label for="todo-note">Note:</label>
+            <textarea id="todo-note"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="update-todo-btns">
+        <button type="button" class="todo-discard-btn" value="discard">Discard Changes</button>
+        <button type="submit" class="todo-save-btn" value="save">Save Changes</button>
+      </div>
+    </form>
+  `;
+  document.body.appendChild(dialog);
+}
+
+export {
+  renderTodo,
+  renderLiElements,
+  renderAddToDoDialog,
+  renderEditToDoDialog,
+};

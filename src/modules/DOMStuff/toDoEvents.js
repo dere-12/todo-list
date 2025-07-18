@@ -1,6 +1,14 @@
-import { getTargetProject, removeToDo } from "../logic/manageToDos.js";
+import {
+  getTargetProject,
+  removeToDo,
+  toggleCompletion,
+} from "../logic/manageToDos.js";
 import { createToDo } from "../logic/manageToDos.js";
-import { renderLiElements, renderTodo } from "./renderToDoElements.js";
+import {
+  renderEditToDoDialog,
+  renderLiElements,
+  renderTodo,
+} from "./renderToDoElements.js";
 
 function newTodoDialogEvents() {
   const newTodoDialog = document.querySelector("#newTodoDialog");
@@ -69,10 +77,28 @@ function todoLiEvents() {
 
     if (e.target.closest(".todo-checkbox")) {
       console.log("checkbox clicked");
+      const projectId = e.target.closest(".todo-checkbox").dataset.projectId;
+      const todoId = e.target.closest(".todo-checkbox").dataset.todoId;
+
+      // will be implemented after local storage implementation.
+      // console.log(e.target.closest(".todo-checkbox").value);
+      // if (e.target.closest(".todo-checkbox").value) {
+      //   toggleCompletion(projectId, todoId);
+      //   // renderTodo(projectId);
+      //   // renderLiElements(projectId);
+      //   // todoLiEvents();
+      //   // e.target.closest(".todo-checkbox").value = "on";
+      // }
     }
 
     if (e.target.closest(".todo-edit-btn")) {
       console.log("edit clicked");
+      const projectId = e.target.closest(".todo-edit-btn").dataset.projectId;
+      const targetTodo = e.target.closest(".todo-edit-btn").dataset.todo;
+
+      renderEditToDoDialog(projectId, targetTodo);
+      const updateTodoDialog = document.querySelector("#updateTodoDialog");
+      updateTodoDialog.showModal();
     }
 
     if (e.target.closest(".todo-delete-btn")) {
@@ -90,5 +116,7 @@ function todoLiEvents() {
     }
   }
 }
+
+// function updateTodoDialogEvents() {}
 
 export { newTodoDialogEvents, todoLiEvents };

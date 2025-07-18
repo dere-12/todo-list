@@ -28,8 +28,10 @@ aside {
   font-weight: 600;
   padding: 4px;
   border-radius: 2px;
-  border: 1px solid blue;
-  background-color: #010e1a;
+  /* border: 1px solid blue; */
+  border: 1px solid rgb(0, 0, 0);
+  /* background-color: #010e1a; */
+  background-color: #000000;
   /* color: #0174e3; */
   color: #ffffff;
   position: absolute;
