@@ -14,7 +14,8 @@ import { newTodoDialogEvents, todoLiEvents } from "./toDoEvents.js";
 
 const newBtn = document.querySelector(".new-btn-js");
 const tooltip = document.querySelector(".tooltip");
-const projects = document.querySelectorAll(".projects-container");
+// const projects = document.querySelectorAll(".projects-container");
+const projects = document.querySelector(".projects-container");
 const projectDialog = document.querySelector("#projectDialog");
 const cancelBtn = document.querySelector("#projectDialog .cancel-btn");
 const projectNameInput = document.querySelector("#projectName");
@@ -54,9 +55,11 @@ function newBtnHandler() {
   projectDialog.showModal();
 }
 
-projects.forEach((project) => {
-  project.addEventListener("click", projectClickHandler);
-});
+// projects.forEach((project) => {
+//   project.addEventListener("click", projectClickHandler);
+// });
+
+projects.addEventListener("click", projectClickHandler);
 
 function projectClickHandler(e) {
   const kebabIcon = e.target.closest(".menu-button");

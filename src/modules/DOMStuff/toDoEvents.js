@@ -41,27 +41,30 @@ function newTodoDialogEvents() {
         .value.trim();
       const notes = newTodoDialog.querySelector("#todo-note").value.trim();
 
-      if ((title !== "" && description) || dueDate || priority || notes) {
-        createToDo(projectId, {
-          title,
-          description,
-          dueDate,
-          priority,
-          notes,
-        });
-
-        // const todoArray = renderTodo(projectId);
-        renderTodo(projectId);
-        renderLiElements(projectId);
-        todoLiEvents();
-
-        form.reset();
-        // console.log(todoArray);
-        console.log(
-          `New todo created for: ${targetProject.projectName} and here it is:`
-        );
-        console.log(targetProject);
+      if (title === "") {
+        alert("Todo title cannot be empty!");
+        return;
       }
+
+      createToDo(projectId, {
+        title,
+        description,
+        dueDate,
+        priority,
+        notes,
+      });
+
+      // const todoArray = renderTodo(projectId);
+      renderTodo(projectId);
+      renderLiElements(projectId);
+      todoLiEvents();
+
+      form.reset();
+      // console.log(todoArray);
+      console.log(
+        `New todo created for: ${targetProject.projectName} and here it is:`
+      );
+      console.log(targetProject);
     }
   });
 }
@@ -159,21 +162,30 @@ function updateTodoDialogEvents() {
         .value.trim();
       const notes = updateTodoDialog.querySelector("#todo-note").value.trim();
 
-      if ((title !== "" && description) || dueDate || priority || notes) {
-        editToDo(projectId, todoId, {
-          title,
-          description,
-          dueDate,
-          priority,
-          notes,
-        });
-
-        renderTodo(projectId);
-        renderLiElements(projectId);
-        todoLiEvents();
+      if (title === "") {
+        alert("Todo title cannot be empty!");
+        return;
       }
+      editToDo(projectId, todoId, {
+        title,
+        description,
+        dueDate,
+        priority,
+        notes,
+      });
+
+      renderTodo(projectId);
+      renderLiElements(projectId);
+      todoLiEvents();
     }
   });
+
+  // update the caret position to the end of the text/todo title or name.
+  const titleInput = updateTodoDialog.querySelector("#todo-title");
+  if (titleInput) {
+    titleInput.selectionStart = titleInput.value.length;
+    titleInput.selectionEnd = titleInput.value.length;
+  }
 }
 
 export { newTodoDialogEvents, todoLiEvents };

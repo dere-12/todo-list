@@ -156,7 +156,7 @@ function renderEditToDoDialog(projectId, todoId) {
         <div class="todo-info-left">
           <div>
             <label for="todo-title">Title:</label>
-            <input type="text" id="todo-title" value="${targetTodo.title}" placeholder="Todo Title"/>
+            <input type="text" id="todo-title" value="${targetTodo.title}" required/>
           </div>
           <div>
             <label for="due-date">Due Date:</label>
@@ -190,6 +190,8 @@ function renderEditToDoDialog(projectId, todoId) {
     </form>
   `;
   document.body.appendChild(dialog);
+  const selectPriorityElement = dialog.querySelector("#select-priority");
+  selectPriorityElement.value = targetTodo.priority;
 }
 
 export {

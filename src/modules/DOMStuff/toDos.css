@@ -127,7 +127,8 @@
   font-size: 1.5rem;
 }
 
-#newTodoDialog input:invalid {
+#newTodoDialog input:invalid,
+#updateTodoDialog input:invalid {
   border-color: #ff2a2a;
 }
 
