@@ -4,6 +4,7 @@ import editIcon from "../../images/pencil.svg";
 import deleteIcon from "../../images/trash-can.svg";
 import { getTargetProject } from "../logic/manageToDos.js";
 import { projectsArray } from "../logic/manageProjects.js";
+import { format, parseISO } from "date-fns";
 
 const main = document.querySelector("main");
 // let projectId = projectsArray[0].id;
@@ -46,7 +47,11 @@ function renderLiElements(projectId) {
           </div>
           <div class="todo-right">
             <p>Priority: ${todo.priority}</p>
-            <p>dueDate: ${todo.dueDate}</p>
+            <p>Due Date: ${
+              todo.dueDate
+                ? format(parseISO(todo.dueDate), "MMM dd, yyyy")
+                : "No due date"
+            }</p>
             <button class="show-more-btn"><img src="${threeDots}" width="20px" alt="kebab menu icon, dots vertical menu" /></button>
           </div>
         </div>
@@ -57,7 +62,10 @@ function renderLiElements(projectId) {
           </div>
           <div>
             <h4>Creation Date</h4>
-            <p id="creation-date-para">${todo.creationDate}</p>
+            <p id="creation-date-para">${format(
+              todo.creationDate,
+              "MMM dd, yyyy"
+            )}</p>
           </div>
           <div>
             <h4>Completion</h4>
