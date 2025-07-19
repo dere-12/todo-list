@@ -2,9 +2,10 @@ import "./style.css";
 import { renderProject } from "./modules/DOMStuff/renderProjectElements.js";
 import "./modules/DOMStuff/projectEvents.js";
 // import "./modules/DOMStuff/toDoEvents.js";
+import { loadProjectsFromLocalStorage } from "./modules/data/storage.js";
+import { projectsArray } from "./modules/logic/manageProjects.js";
 import {
   createProject,
-  projectsArray,
   renameProject,
   removeProject,
 } from "./modules/logic/manageProjects.js";
@@ -15,13 +16,46 @@ import {
   updatePriority,
   editToDo,
 } from "./modules/logic/manageToDos.js";
+import { todoLiEvents } from "./modules/DOMStuff/toDoEvents.js";
+import {
+  renderLiElements,
+  renderTodo,
+} from "./modules/DOMStuff/renderToDoElements.js";
 
 console.log("Webpack is Working!");
 
-createProject("Test Project");
-createProject("Proj-2");
-createProject("Test Project Name");
-renderProject();
+function initializeApp() {
+  const loadedProjects = loadProjectsFromLocalStorage();
+
+  if (loadedProjects.length > 0) {
+    projectsArray.splice(0, projectsArray.length, ...loadedProjects);
+    console.log("App initialized with loaded projects:", projectsArray);
+  } else {
+    console.log("No projects loaded, creating default projects.");
+    createProject("General");
+    createProject("Personal");
+  }
+
+  if (projectsArray.length > 0) {
+    const defaultProjectOneId = projectsArray[0].id;
+    createToDo(defaultProjectOneId, {
+      title: "Morning Stretch Routine",
+      description:
+        "Start each morning with a 15-minute full-body stretch routine",
+      duDate: new Date(),
+      notes: "Use a yoga app for guidance and adjust stretches as needed",
+      priority: "medium",
+    });
+
+    renderTodo(defaultProjectOneId);
+    renderLiElements(defaultProjectOneId);
+    todoLiEvents();
+  }
+
+  renderProject();
+}
+
+initializeApp();
 
 // const proj1 = createProject("xoGame");
 // const proj2 = createProject("personal");
