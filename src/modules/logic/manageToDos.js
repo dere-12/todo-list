@@ -1,7 +1,5 @@
 import { projectsArray } from "./manageProjects.js";
 
-// Note: projectName is used instead of projectId for testing purpose only. It will be replaced back to projectId.
-
 function getTargetProject(projectId) {
   return projectsArray.find((project) => project.id === projectId);
 }

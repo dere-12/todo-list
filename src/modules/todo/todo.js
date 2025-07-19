@@ -3,7 +3,7 @@ class Todo {
     title,
     description = "",
     dueDate = null,
-    creationDate = new Date(), // should be default to current date, will be fixed using date-fns library.
+    creationDate = new Date(),
     priority = "low",
     notes = "",
   }) {

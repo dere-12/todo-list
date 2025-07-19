@@ -18,8 +18,6 @@ class Project {
     this.todosArray.push(todo);
   }
 
-  // Note: projectName is used instead of projectId for testing purpose only. It will be replaced back to projectId.
-
   removeToDo(todoId) {
     const initialLength = this.todosArray.length;
     this.todosArray = this.todosArray.filter((todo) => todo.id !== todoId);

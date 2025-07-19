@@ -8,8 +8,6 @@ function createProject(projectName) {
   projectsArray.push(project);
 }
 
-// Note: projectName is used instead of projectId for testing purpose only. It will be replaced back to projectId.
-
 function removeProject(projectId) {
   projectsArray = projectsArray.filter((project) => project.id !== projectId);
 }
