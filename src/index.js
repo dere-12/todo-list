@@ -29,29 +29,33 @@ function initializeApp() {
 
   if (loadedProjects.length > 0) {
     projectsArray.splice(0, projectsArray.length, ...loadedProjects);
+    const defaultProjectOneId = projectsArray[0].id;
+    renderTodo(defaultProjectOneId);
+    renderLiElements(defaultProjectOneId);
+    todoLiEvents();
+
     console.log("App initialized with loaded projects:", projectsArray);
   } else {
     console.log("No projects loaded, creating default projects.");
     createProject("General");
     createProject("Personal");
+
+    if (projectsArray.length > 0) {
+      const defaultProjectOneId = projectsArray[0].id;
+      createToDo(defaultProjectOneId, {
+        title: "Morning Stretch Routine",
+        description:
+          "Start each morning with a 15-minute full-body stretch routine",
+        duDate: new Date(),
+        notes: "Use a yoga app for guidance and adjust stretches as needed",
+        priority: "medium",
+      });
+
+      renderTodo(defaultProjectOneId);
+      renderLiElements(defaultProjectOneId);
+      todoLiEvents();
+    }
   }
-
-  if (projectsArray.length > 0) {
-    const defaultProjectOneId = projectsArray[0].id;
-    createToDo(defaultProjectOneId, {
-      title: "Morning Stretch Routine",
-      description:
-        "Start each morning with a 15-minute full-body stretch routine",
-      duDate: new Date(),
-      notes: "Use a yoga app for guidance and adjust stretches as needed",
-      priority: "medium",
-    });
-
-    renderTodo(defaultProjectOneId);
-    renderLiElements(defaultProjectOneId);
-    todoLiEvents();
-  }
-
   renderProject();
 }
 

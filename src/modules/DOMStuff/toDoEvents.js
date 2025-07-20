@@ -11,6 +11,7 @@ import {
   renderLiElements,
   renderTodo,
 } from "./renderToDoElements.js";
+import { parse, parseISO } from "date-fns";
 
 function newTodoDialogEvents() {
   const newTodoDialog = document.querySelector("#newTodoDialog");
@@ -35,7 +36,12 @@ function newTodoDialogEvents() {
       const description = newTodoDialog
         .querySelector("#short-desc")
         .value.trim();
-      const dueDate = newTodoDialog.querySelector("#due-date").value.trim();
+      let dueDate = newTodoDialog.querySelector("#due-date").value.trim();
+      if (dueDate) {
+        dueDate = parseISO(dueDate);
+      } else {
+        dueDate = null;
+      }
       const priority = newTodoDialog
         .querySelector("#select-priority")
         .value.trim();
@@ -87,7 +93,8 @@ function todoLiEvents() {
     }
 
     if (e.target.closest(".todo-checkbox")) {
-      console.log("checkbox clicked");
+      const checkbox = e.target.closest(".todo-checkbox");
+      console.log("checkbox clicked" + checkbox);
       const projectId = e.target.closest(".todo-checkbox").dataset.projectId;
       const todoId = e.target.closest(".todo-checkbox").dataset.todoId;
 
@@ -156,7 +163,12 @@ function updateTodoDialogEvents() {
       const description = updateTodoDialog
         .querySelector("#short-desc")
         .value.trim();
-      const dueDate = updateTodoDialog.querySelector("#due-date").value.trim();
+      let dueDate = updateTodoDialog.querySelector("#due-date").value.trim();
+      if (dueDate) {
+        dueDate = parseISO(dueDate);
+      } else {
+        dueDate = null;
+      }
       const priority = updateTodoDialog
         .querySelector("#select-priority")
         .value.trim();

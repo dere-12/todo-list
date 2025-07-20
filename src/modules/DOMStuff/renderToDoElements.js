@@ -30,6 +30,8 @@ function renderLiElements(projectId) {
   const todoArray = targetProject.todosArray;
   // console.log(todosContainer);
 
+  todosContainer.innerHTML = "";
+
   todoArray.forEach((todo) => {
     const li = document.createElement("li");
     console.log(todoArray + ". Received!");
@@ -49,7 +51,7 @@ function renderLiElements(projectId) {
             <p>Priority: ${todo.priority}</p>
             <p>Due Date: ${
               todo.dueDate
-                ? format(parseISO(todo.dueDate), "MMM dd, yyyy")
+                ? format(todo.dueDate, "MMM dd, yyyy")
                 : "No due date"
             }</p>
             <button class="show-more-btn"><img src="${threeDots}" width="20px" alt="kebab menu icon, dots vertical menu" /></button>
