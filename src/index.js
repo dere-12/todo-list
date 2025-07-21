@@ -42,13 +42,14 @@ function initializeApp() {
 
     if (projectsArray.length > 0) {
       const defaultProjectOneId = projectsArray[0].id;
+      const dueDate = new Date();
       createToDo(defaultProjectOneId, {
         title: "Morning Stretch Routine",
         description:
           "Start each morning with a 15-minute full-body stretch routine",
-        duDate: new Date(),
         notes: "Use a yoga app for guidance and adjust stretches as needed",
         priority: "Medium",
+        dueDate,
       });
 
       renderTodo(defaultProjectOneId);

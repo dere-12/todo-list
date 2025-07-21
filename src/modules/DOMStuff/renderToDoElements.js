@@ -4,7 +4,7 @@ import editIcon from "../../images/pencil.svg";
 import deleteIcon from "../../images/trash-can.svg";
 import { getTargetProject } from "../logic/manageToDos.js";
 import { projectsArray } from "../logic/manageProjects.js";
-import { format, parseISO } from "date-fns";
+import { format, parseISO, formatISO } from "date-fns";
 
 const main = document.querySelector("main");
 // let projectId = projectsArray[0].id;
@@ -33,6 +33,15 @@ function renderLiElements(projectId) {
   todosContainer.innerHTML = "";
 
   todoArray.forEach((todo) => {
+    console.log(`--- Debugging Todo: ${todo.title} ---`);
+    console.log(`Raw dueDate:`, todo.dueDate);
+    console.log(`Type of dueDate:`, typeof todo.dueDate);
+    console.log(`Is dueDate a Date object?`, todo.dueDate instanceof Date);
+    if (todo.dueDate instanceof Date) {
+      console.log(`Is dueDate a valid Date?`, !isNaN(todo.dueDate.getTime()));
+    }
+    console.log(`-------------------------------------`);
+
     const li = document.createElement("li");
     li.className = "todo-list-item";
     // console.log(todoArray + ". Received!");
@@ -186,11 +195,17 @@ function renderEditToDoDialog(projectId, todoId) {
         <div class="todo-info-left">
           <div>
             <label for="todo-title">Title:</label>
-            <input type="text" id="todo-title" value="${targetTodo.title}" required/>
+            <input type="text" id="todo-title" value="${
+              targetTodo.title
+            }" required/>
           </div>
           <div>
             <label for="due-date">Due Date:</label>
-            <input type="date" value="${targetTodo.dueDate}" id="due-date" />
+            <input type="date" value="${
+              targetTodo.dueDate && !isNaN(targetTodo.dueDate.getTime())
+                ? formatISO(targetTodo.dueDate, { representation: "date" })
+                : ""
+            }" id="due-date" />
           </div>
           <div>
             <label for="select-priority">Select Priority: </label>
@@ -215,7 +230,9 @@ function renderEditToDoDialog(projectId, todoId) {
       </div>
       <div class="update-todo-btns">
         <button type="button" class="todo-discard-btn" value="discard">Discard Changes</button>
-        <button type="submit" class="todo-save-btn" value="save" data-project-id="${projectId}" data-todo-id="${targetTodo.id}">Save Changes</button>
+        <button type="submit" class="todo-save-btn" value="save" data-project-id="${projectId}" data-todo-id="${
+    targetTodo.id
+  }">Save Changes</button>
       </div>
     </form>
   `;
