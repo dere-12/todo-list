@@ -177,3 +177,5 @@ document.addEventListener("click", (e) => {
     });
   }
 });
+
+export { toTitleCase };

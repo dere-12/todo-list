@@ -4,7 +4,7 @@ class Todo {
     description = "",
     dueDate = null,
     creationDate = new Date(),
-    priority = "low",
+    priority = "Low",
     notes = "",
   }) {
     if (!title) {

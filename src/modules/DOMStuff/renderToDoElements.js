@@ -47,15 +47,17 @@ function renderLiElements(projectId) {
               data-todo-id="${todo.id}"
               ${todo.isCompleted ? "checked" : ""}
             />
-            <p>Todo Title: ${todo.title}</p>
+            <p class="${
+              todo.isCompleted ? "completed-todo-title" : ""
+            }">Todo Title: <span>${todo.title}</span></p>
           </div>
           <div class="todo-right">
-            <p>Priority: ${todo.priority}</p>
-            <p>Due Date: ${
+            <p class="todo-priority">Priority: <span>${todo.priority}</span></p>
+            <p>Due Date: <span>${
               todo.dueDate
                 ? format(todo.dueDate, "MMM dd, yyyy")
                 : "No due date"
-            }</p>
+            }</span></p>
             <button class="show-more-btn"><img src="${threeDots}" width="20px" alt="kebab menu icon, dots vertical menu" /></button>
           </div>
         </div>
@@ -99,6 +101,22 @@ function renderLiElements(projectId) {
       `;
     todosContainer.appendChild(li);
   });
+
+  const prioritySpans = document.querySelectorAll(
+    ".todo-right .todo-priority span"
+  );
+
+  for (let i = 0; i < prioritySpans.length; i++) {
+    if (prioritySpans[i].textContent === "Urgent") {
+      prioritySpans[i].style.color = "#ff4c4c";
+    } else if (prioritySpans[i].textContent === "High") {
+      prioritySpans[i].style.color = "#ff9800";
+    } else if (prioritySpans[i].textContent === "Medium") {
+      prioritySpans[i].style.color = "#ffeb3b";
+    } else if (prioritySpans[i].textContent === "Low") {
+      prioritySpans[i].style.color = "#46ff4fff";
+    }
+  }
 }
 
 function renderAddToDoDialog(targetProject) {
@@ -123,10 +141,10 @@ function renderAddToDoDialog(targetProject) {
           <div>
             <label for="select-priority">Select Priority: </label>
             <select id="select-priority">
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-              <option value="urgent">Urgent</option>
+              <option value="Low" style="background-color: #525050;color: #81c784; font-weight: bold;">Low</option>
+              <option value="Medium" style="background-color: #525050;color: #ffeb3b; font-weight: bold;">Medium</option>
+              <option value="High" style="background-color: #525050;color: #ff9800;" font-weight: bold;>High</option>
+              <option value="Urgent" style="background-color: #525050;color: #ff4c4c; font-weight: bold;">Urgent</option>
             </select>
           </div>
         </div>
@@ -177,10 +195,10 @@ function renderEditToDoDialog(projectId, todoId) {
           <div>
             <label for="select-priority">Select Priority: </label>
             <select id="select-priority">
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-              <option value="urgent">Urgent</option>
+              <option value="Low" style="background-color: #525050;color: #81c784; font-weight: bold;">Low</option>
+              <option value="Medium" style="background-color: #525050;color: #ffeb3b; font-weight: bold;">Medium</option>
+              <option value="High" style="background-color: #525050;color: #ff9800;" font-weight: bold;>High</option>
+              <option value="Urgent" style="background-color: #525050;color: #ff4c4c; font-weight: bold;">Urgent</option>
             </select>
           </div>
         </div>

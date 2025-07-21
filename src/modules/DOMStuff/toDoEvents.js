@@ -12,6 +12,7 @@ import {
   renderTodo,
 } from "./renderToDoElements.js";
 import { parse, parseISO } from "date-fns";
+import { toTitleCase } from "./projectEvents.js";
 
 function newTodoDialogEvents() {
   const newTodoDialog = document.querySelector("#newTodoDialog");
@@ -53,7 +54,7 @@ function newTodoDialogEvents() {
       }
 
       createToDo(projectId, {
-        title,
+        title: toTitleCase(title),
         description,
         dueDate,
         priority,
@@ -109,11 +110,11 @@ function todoLiEvents() {
           todoListItem.querySelector("#completion-para");
 
         if (targetTodo.isCompleted) {
-          // todoTitlePara.classList.add("completed-todo-title");
+          todoTitlePara.classList.add("completed-todo-title");
           completionStatusPara.textContent = "Completed";
           checkbox.checked = true;
         } else {
-          // todoTitlePara.classList.remove("completed-todo-title");
+          todoTitlePara.classList.remove("completed-todo-title");
           completionStatusPara.textContent = "Not Completed";
           checkbox.checked = false;
         }
@@ -202,7 +203,7 @@ function updateTodoDialogEvents() {
         return;
       }
       editToDo(projectId, todoId, {
-        title,
+        title: toTitleCase(title),
         description,
         dueDate,
         priority,

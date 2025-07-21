@@ -48,7 +48,7 @@ function initializeApp() {
           "Start each morning with a 15-minute full-body stretch routine",
         duDate: new Date(),
         notes: "Use a yoga app for guidance and adjust stretches as needed",
-        priority: "medium",
+        priority: "Medium",
       });
 
       renderTodo(defaultProjectOneId);

@@ -9,17 +9,34 @@
 
 .todos-container .todo {
   display: flex;
-  gap: 8rem;
-  margin-bottom: 10px;
+  gap: 6rem;
+  margin-bottom: 1rem;
+}
+
+.todo-left {
+  width: 300px;
+}
+
+.todo-right .todo-priority {
+  width: 120px;
 }
 
 .todo-left,
 .todo-right {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   color: #fff;
   font-weight: bold;
+}
+
+.todo p {
+  color: aqua;
+}
+
+.todo span {
+  color: #ffffff;
+  font-size: 14px;
 }
 
 .show-more-btn {
@@ -79,6 +96,11 @@
   line-height: 1.5;
   background-color: #000000;
   padding: 2px 3px 4px 10px;
+}
+
+.completed-todo-title {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
 
 /* .desc > h4,
