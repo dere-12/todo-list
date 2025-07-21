@@ -5,13 +5,12 @@ import {
   toggleCompletion,
   createToDo,
 } from "../logic/manageToDos.js";
-// import { createToDo } from "../logic/manageToDos.js";
 import {
   renderEditToDoDialog,
   renderLiElements,
   renderTodo,
 } from "./renderToDoElements.js";
-import { parse, parseISO } from "date-fns";
+import { parseISO } from "date-fns";
 import { toTitleCase } from "./projectEvents.js";
 
 function newTodoDialogEvents() {
@@ -19,9 +18,6 @@ function newTodoDialogEvents() {
   const todoCancelBtn = document.querySelector(
     "#newTodoDialog .todo-cancel-btn"
   );
-
-  // console.log("todo events js is running.");
-
   todoCancelBtn.addEventListener("click", () => {
     newTodoDialog.close();
   });
@@ -33,7 +29,7 @@ function newTodoDialogEvents() {
         newTodoDialog.querySelector(".todo-create-btn").dataset.projectId;
       const targetProject = getTargetProject(projectId);
 
-      const title = newTodoDialog.querySelector("#todo-title").value.trim();
+      let title = newTodoDialog.querySelector("#todo-title").value.trim();
       const description = newTodoDialog
         .querySelector("#short-desc")
         .value.trim();
@@ -53,25 +49,20 @@ function newTodoDialogEvents() {
         return;
       }
 
+      title = toTitleCase(title);
       createToDo(projectId, {
-        title: toTitleCase(title),
+        title,
         description,
         dueDate,
         priority,
         notes,
       });
 
-      // const todoArray = renderTodo(projectId);
       renderTodo(projectId);
       renderLiElements(projectId);
       todoLiEvents();
 
       form.reset();
-      // console.log(todoArray);
-      console.log(
-        `New todo created for: ${targetProject.projectName} and here it is:`
-      );
-      console.log(targetProject);
     }
   });
 }
@@ -83,7 +74,6 @@ function todoLiEvents() {
 
   function todoClickHandler(e) {
     if (e.target.closest(".show-more-btn")) {
-      console.log("3dots clicked");
       const todoMoreParent = e.target.closest(".todo");
       const currentTodoMore = todoMoreParent.nextElementSibling;
       document.querySelectorAll(".todo-more").forEach((todoMore) => {
@@ -95,7 +85,6 @@ function todoLiEvents() {
 
     if (e.target.closest(".todo-checkbox")) {
       const checkbox = e.target.closest(".todo-checkbox");
-      console.log("checkbox clicked: ", checkbox);
       const projectId = e.target.closest(".todo-checkbox").dataset.projectId;
       const todoId = e.target.closest(".todo-checkbox").dataset.todoId;
 
@@ -119,22 +108,9 @@ function todoLiEvents() {
           checkbox.checked = false;
         }
       }
-
-      // if (checkbox.checked) {
-      //   toggleCompletion(projectId, todoId);
-      //   renderTodo(projectId);
-      //   renderLiElements(projectId);
-      //   todoLiEvents();
-      // } else {
-      //   toggleCompletion(projectId, todoId);
-      //   renderTodo(projectId);
-      //   renderLiElements(projectId);
-      //   todoLiEvents();
-      // }
     }
 
     if (e.target.closest(".todo-edit-btn")) {
-      console.log("edit clicked");
       const projectId = e.target.closest(".todo-edit-btn").dataset.projectId;
       const todoId = e.target.closest(".todo-edit-btn").dataset.todoId;
       const previousNewTodoDialog = document.querySelector("#updateTodoDialog");
@@ -151,11 +127,6 @@ function todoLiEvents() {
     if (e.target.closest(".todo-delete-btn")) {
       const projectId = e.target.closest(".todo-delete-btn").dataset.projectId;
       const todoId = e.target.closest(".todo-delete-btn").dataset.todoId;
-      console.log("delete clicked");
-      console.log(`
-          project id: ${projectId}
-          todo id: ${todoId}
-        `);
       removeToDo(projectId, todoId);
       renderTodo(projectId);
       renderLiElements(projectId);
@@ -176,14 +147,12 @@ function updateTodoDialogEvents() {
 
   updateTodoDialog.addEventListener("close", () => {
     if (updateTodoDialog.returnValue === "save") {
-      console.log("change saved");
-      const form = updateTodoDialog.querySelector("form");
       const projectId =
         updateTodoDialog.querySelector(".todo-save-btn").dataset.projectId;
       const todoId =
         updateTodoDialog.querySelector(".todo-save-btn").dataset.todoId;
 
-      const title = updateTodoDialog.querySelector("#todo-title").value.trim();
+      let title = updateTodoDialog.querySelector("#todo-title").value.trim();
       const description = updateTodoDialog
         .querySelector("#short-desc")
         .value.trim();
@@ -202,8 +171,10 @@ function updateTodoDialogEvents() {
         alert("Todo title cannot be empty!");
         return;
       }
+
+      title = toTitleCase(title);
       editToDo(projectId, todoId, {
-        title: toTitleCase(title),
+        title,
         description,
         dueDate,
         priority,
@@ -216,7 +187,6 @@ function updateTodoDialogEvents() {
     }
   });
 
-  // update the caret position to the end of the text/todo title or name.
   const titleInput = updateTodoDialog.querySelector("#todo-title");
   if (titleInput) {
     titleInput.selectionStart = titleInput.value.length;

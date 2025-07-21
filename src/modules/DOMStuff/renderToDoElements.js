@@ -3,16 +3,12 @@ import threeDots from "../../images/dots-vertical-menu.svg";
 import editIcon from "../../images/pencil.svg";
 import deleteIcon from "../../images/trash-can.svg";
 import { getTargetProject } from "../logic/manageToDos.js";
-import { projectsArray } from "../logic/manageProjects.js";
 import { format, parseISO, formatISO } from "date-fns";
 
 const main = document.querySelector("main");
-// let projectId = projectsArray[0].id;
 
 function renderTodo(projectId) {
-  // projectId = projectId;
   const targetProject = getTargetProject(projectId);
-  // const todoArray = targetProject.todosArray;
 
   main.innerHTML = `
   <h3 class="todo-project-name">${targetProject.projectName}</h3>
@@ -20,31 +16,18 @@ function renderTodo(projectId) {
 
   </ul>
   `;
-
-  // return todoArray;
 }
 
 function renderLiElements(projectId) {
   const todosContainer = document.querySelector(".todos-container");
   const targetProject = getTargetProject(projectId);
   const todoArray = targetProject.todosArray;
-  // console.log(todosContainer);
 
   todosContainer.innerHTML = "";
 
   todoArray.forEach((todo) => {
-    console.log(`--- Debugging Todo: ${todo.title} ---`);
-    console.log(`Raw dueDate:`, todo.dueDate);
-    console.log(`Type of dueDate:`, typeof todo.dueDate);
-    console.log(`Is dueDate a Date object?`, todo.dueDate instanceof Date);
-    if (todo.dueDate instanceof Date) {
-      console.log(`Is dueDate a valid Date?`, !isNaN(todo.dueDate.getTime()));
-    }
-    console.log(`-------------------------------------`);
-
     const li = document.createElement("li");
     li.className = "todo-list-item";
-    // console.log(todoArray + ". Received!");
     li.innerHTML = `
         <div class="todo">
           <div class="todo-left">
@@ -83,7 +66,7 @@ function renderLiElements(projectId) {
             )}</p>
           </div>
           <div>
-            <h4>Completion</h4>
+            <h4>Completion Status</h4>
             <p id="completion-para">${
               todo.isCompleted === true ? "Completed" : "Not Completed"
             }</p>
@@ -129,11 +112,8 @@ function renderLiElements(projectId) {
 }
 
 function renderAddToDoDialog(targetProject) {
-  // const targetObj = getTargetProject(projectId);
-  console.log(`${targetProject.projectName} dialog opened.`);
   const dialog = document.createElement("dialog");
   dialog.id = "newTodoDialog";
-  // dialog.innerHTML = "";
   dialog.innerHTML = `
     <form method="dialog">
       <h3>Create New Todo For ${targetProject.projectName}</h3>
@@ -176,16 +156,11 @@ function renderAddToDoDialog(targetProject) {
   `;
   document.body.appendChild(dialog);
 }
-// renderAddToDoDialog(projectId);
 
 function renderEditToDoDialog(projectId, todoId) {
   const targetProject = getTargetProject(projectId);
   const todoArray = targetProject.todosArray;
   const targetTodo = todoArray.find((todo) => todo.id === todoId);
-  console.log(`
-    update-projectId: ${targetProject.projectName}.
-    target todo: ${targetTodo.title}
-    `);
   const dialog = document.createElement("dialog");
   dialog.id = "updateTodoDialog";
   dialog.innerHTML = `

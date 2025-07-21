@@ -23,7 +23,6 @@ function renderProject() {
     const projectsContainer = document.querySelector(".projects-container");
     const li = document.createElement("li");
     li.className = "project";
-    // li.dataset.projectId = project.id;
     li.innerHTML = `
         <h3 class="project-name" data-project-id="${project.id}">${project.projectName}</h3>
         <p class="add-todo" data-project-id="${project.id}"><span>+</span>Add ToDo</p>
@@ -46,7 +45,6 @@ function renderProject() {
 }
 
 function renderNewProjectDialog() {
-  // console.log("rnpd fn triggered");
   const dialog = document.createElement("dialog");
   dialog.id = "projectDialog";
   dialog.innerHTML = `
@@ -66,6 +64,5 @@ function renderNewProjectDialog() {
   `;
   document.body.appendChild(dialog);
 }
-// renderNewProjectDialog();
 
 export { renderProject, renderNewProjectDialog };

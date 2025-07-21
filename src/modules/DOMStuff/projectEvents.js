@@ -17,10 +17,7 @@ import { newTodoDialogEvents, todoLiEvents } from "./toDoEvents.js";
 
 const newBtn = document.querySelector(".new-btn-js");
 const tooltip = document.querySelector(".tooltip");
-// const projects = document.querySelectorAll(".projects-container");
 const projects = document.querySelector(".projects-container");
-
-// const projectNameInput = document.querySelector("#projectName");
 
 newBtn.addEventListener("mouseenter", () => {
   tooltip.style.visibility = "visible";
@@ -37,7 +34,6 @@ function newProjectDialogEvents() {
   const cancelBtn = document.querySelector("#projectDialog .cancel-btn");
 
   cancelBtn.addEventListener("click", () => {
-    // projectNameInput.value = "";
     projectDialog.close();
   });
 
@@ -50,14 +46,10 @@ function newProjectDialogEvents() {
       createProject(name);
       renderProject();
     }
-
-    // projectNameInput.value = "";
   });
 }
 
 function newBtnHandler() {
-  console.log("new btn clicked");
-
   const previousProjectDialog = document.querySelector("#projectDialog");
   if (previousProjectDialog) {
     document.body.removeChild(previousProjectDialog);
@@ -68,21 +60,13 @@ function newBtnHandler() {
 
   const projectDialog = document.querySelector("#projectDialog");
   projectDialog.showModal();
-
-  // projectNameInput.value = "";
-  // projectDialog.showModal();
 }
-
-// projects.forEach((project) => {
-//   project.addEventListener("click", projectClickHandler);
-// });
 
 projects.addEventListener("click", projectClickHandler);
 
 function projectClickHandler(e) {
   const kebabIcon = e.target.closest(".menu-button");
   if (kebabIcon) {
-    // console.log("3dots clicked");
     const projectMenuOption = kebabIcon.nextElementSibling;
     document.querySelectorAll(".menu-options").forEach((menu) => {
       if (menu !== projectMenuOption) menu.style.display = "none";
@@ -94,8 +78,6 @@ function projectClickHandler(e) {
   if (e.target.classList.contains("delete")) {
     const projectId = e.target.dataset.projectId;
     const main = document.querySelector("main");
-    // const targetProject = getTargetProject(projectId);
-    // console.log(`Delete ${targetProject.projectName}`);
 
     removeProject(projectId);
     renderProject();
@@ -104,13 +86,10 @@ function projectClickHandler(e) {
 
   if (e.target.classList.contains("rename-option")) {
     const projectId = e.target.dataset.projectId;
-    // const targetProject = getTargetProject(projectId);
-    // console.log(`Rename ${targetProject.projectName}`);
 
     const currentRenameWrapper = document.querySelector(
       `.rename-wrapper[data-project-id="${projectId}"]`
     );
-    // console.log(document.querySelectorAll(`.rename-wrapper[data-project-id]`));
     document
       .querySelectorAll(`.rename-wrapper[data-project-id]`)
       .forEach((rw) => {
@@ -125,7 +104,6 @@ function projectClickHandler(e) {
   if (e.target.classList.contains("rename-btn")) {
     const renameWrapper = e.target.closest(".rename-wrapper");
     const projectId = e.target.dataset.projectId;
-    // const targetProject = getTargetProject(projectId);
     const renameInput = renameWrapper.querySelector("#rename-input");
     const inputValue = renameInput.value;
     if (inputValue) {
@@ -151,14 +129,10 @@ function projectClickHandler(e) {
     newTodoDialogEvents();
     const newTodoDialog = document.querySelector("#newTodoDialog");
     newTodoDialog.showModal();
-    console.log(`Add todo of ${targetProject.projectName} clicked.`);
   }
 
   if (e.target.classList.contains("project-name")) {
     const projectId = e.target.dataset.projectId;
-    const targetProject = getTargetProject(projectId);
-    console.log(`${targetProject.projectName} clicked.`);
-    // const todoArray = renderTodo(projectId);
     renderTodo(projectId);
     renderLiElements(projectId);
     todoLiEvents();
