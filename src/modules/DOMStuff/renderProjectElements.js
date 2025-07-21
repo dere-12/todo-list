@@ -51,7 +51,7 @@ function renderNewProjectDialog() {
   dialog.id = "projectDialog";
   dialog.innerHTML = `
   <form method="dialog">
-      <h3>New Project</h3>
+      <h3>Create New Project</h3>
       <input
         type="text"
         id="projectName"
@@ -66,6 +66,6 @@ function renderNewProjectDialog() {
   `;
   document.body.appendChild(dialog);
 }
-renderNewProjectDialog();
+// renderNewProjectDialog();
 
-export { renderProject };
+export { renderProject, renderNewProjectDialog };

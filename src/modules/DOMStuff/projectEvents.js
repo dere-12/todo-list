@@ -4,7 +4,10 @@ import {
   removeProject,
   renameProject,
 } from "../logic/manageProjects.js";
-import { renderProject } from "./renderProjectElements.js";
+import {
+  renderProject,
+  renderNewProjectDialog,
+} from "./renderProjectElements.js";
 import {
   renderTodo,
   renderLiElements,
@@ -16,9 +19,8 @@ const newBtn = document.querySelector(".new-btn-js");
 const tooltip = document.querySelector(".tooltip");
 // const projects = document.querySelectorAll(".projects-container");
 const projects = document.querySelector(".projects-container");
-const projectDialog = document.querySelector("#projectDialog");
-const cancelBtn = document.querySelector("#projectDialog .cancel-btn");
-const projectNameInput = document.querySelector("#projectName");
+
+// const projectNameInput = document.querySelector("#projectName");
 
 newBtn.addEventListener("mouseenter", () => {
   tooltip.style.visibility = "visible";
@@ -30,29 +32,45 @@ newBtn.addEventListener("mouseleave", () => {
 
 newBtn.addEventListener("click", newBtnHandler);
 
-cancelBtn.addEventListener("click", () => {
-  projectNameInput.value = "";
-  projectDialog.close();
-});
+function newProjectDialogEvents() {
+  const projectDialog = document.querySelector("#projectDialog");
+  const cancelBtn = document.querySelector("#projectDialog .cancel-btn");
 
-projectDialog.addEventListener("close", () => {
-  if (
-    projectDialog.returnValue === "create" &&
-    projectDialog.returnValue !== ""
-  ) {
-    const projectNameInputValue = projectNameInput.value;
-    const name = toTitleCase(projectNameInputValue);
-    createProject(name);
-    renderProject();
-  }
+  cancelBtn.addEventListener("click", () => {
+    // projectNameInput.value = "";
+    projectDialog.close();
+  });
 
-  projectNameInput.value = "";
-});
+  projectDialog.addEventListener("close", () => {
+    if (projectDialog.returnValue === "create") {
+      const projectNameInputValue = projectDialog
+        .querySelector("#projectName")
+        .value.trim();
+      const name = toTitleCase(projectNameInputValue);
+      createProject(name);
+      renderProject();
+    }
+
+    // projectNameInput.value = "";
+  });
+}
 
 function newBtnHandler() {
   console.log("new btn clicked");
-  projectNameInput.value = "";
+
+  const previousProjectDialog = document.querySelector("#projectDialog");
+  if (previousProjectDialog) {
+    document.body.removeChild(previousProjectDialog);
+  }
+
+  renderNewProjectDialog();
+  newProjectDialogEvents();
+
+  const projectDialog = document.querySelector("#projectDialog");
   projectDialog.showModal();
+
+  // projectNameInput.value = "";
+  // projectDialog.showModal();
 }
 
 // projects.forEach((project) => {
