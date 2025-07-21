@@ -94,18 +94,41 @@ function todoLiEvents() {
 
     if (e.target.closest(".todo-checkbox")) {
       const checkbox = e.target.closest(".todo-checkbox");
-      console.log("checkbox clicked" + checkbox);
+      console.log("checkbox clicked: ", checkbox);
       const projectId = e.target.closest(".todo-checkbox").dataset.projectId;
       const todoId = e.target.closest(".todo-checkbox").dataset.todoId;
 
-      // will be implemented after local storage implementation.
-      // console.log(e.target.closest(".todo-checkbox").value);
-      // if (e.target.closest(".todo-checkbox").value) {
+      toggleCompletion(projectId, todoId);
+      const targetProject = getTargetProject(projectId);
+      const targetTodo = targetProject.getToDo(todoId);
+
+      if (targetTodo) {
+        const todoListItem = checkbox.closest(".todo-list-item");
+        const todoTitlePara = todoListItem.querySelector(".todo-left p");
+        const completionStatusPara =
+          todoListItem.querySelector("#completion-para");
+
+        if (targetTodo.isCompleted) {
+          // todoTitlePara.classList.add("completed-todo-title");
+          completionStatusPara.textContent = "Completed";
+          checkbox.checked = true;
+        } else {
+          // todoTitlePara.classList.remove("completed-todo-title");
+          completionStatusPara.textContent = "Not Completed";
+          checkbox.checked = false;
+        }
+      }
+
+      // if (checkbox.checked) {
       //   toggleCompletion(projectId, todoId);
-      //   // renderTodo(projectId);
-      //   // renderLiElements(projectId);
-      //   // todoLiEvents();
-      //   // e.target.closest(".todo-checkbox").value = "on";
+      //   renderTodo(projectId);
+      //   renderLiElements(projectId);
+      //   todoLiEvents();
+      // } else {
+      //   toggleCompletion(projectId, todoId);
+      //   renderTodo(projectId);
+      //   renderLiElements(projectId);
+      //   todoLiEvents();
       // }
     }
 

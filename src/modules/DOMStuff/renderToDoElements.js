@@ -34,7 +34,8 @@ function renderLiElements(projectId) {
 
   todoArray.forEach((todo) => {
     const li = document.createElement("li");
-    console.log(todoArray + ". Received!");
+    li.className = "todo-list-item";
+    // console.log(todoArray + ". Received!");
     li.innerHTML = `
         <div class="todo">
           <div class="todo-left">
@@ -44,6 +45,7 @@ function renderLiElements(projectId) {
               id="checkbox"
               data-project-id="${projectId}"
               data-todo-id="${todo.id}"
+              ${todo.isCompleted ? "checked" : ""}
             />
             <p>Todo Title: ${todo.title}</p>
           </div>
