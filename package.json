@@ -1,26 +1,32 @@
 {
-  "name": "todo-list",
+  "name": "dailist",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "description": "Your daily task manager to keep you organized and productive.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dere-12/todo-list.git"
   },
-  "keywords": [],
+  "keywords": [
+    "todo",
+    "task manager"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dere-12/todo-list/issues"
   },
-  "homepage": "https://github.com/dere-12/todo-list#readme",
+  "homepage": "https://dere-12.github.io/todo-list/",
   "devDependencies": {
     "css-loader": "^7.1.2",
+    "gh-pages": "^6.3.0",
     "html-webpack-plugin": "^5.6.3",
     "style-loader": "^4.0.0",
     "webpack": "^5.99.9",
