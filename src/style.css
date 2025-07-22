@@ -36,3 +36,37 @@ main {
   grid-column: 2/3;
   grid-row: 2/3;
 }
+
+footer {
+  border-top: 1px solid blue;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  background-color: #091722;
+  box-shadow: 0px -10px 30px 40px rgba(0, 0, 0, 0.9);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 4rem;
+}
+
+.footer-content p:first-child {
+  font-size: 13px;
+}
+
+.footer-content p:last-child {
+  font-size: 15px;
+}
+
+.footer-content a {
+  color: aqua;
+  text-decoration: none;
+}
+
+.footer-content a:hover {
+  text-decoration: underline;
+}

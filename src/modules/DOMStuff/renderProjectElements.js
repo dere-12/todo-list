@@ -19,7 +19,9 @@ aside.innerHTML = `
 
 function renderProject() {
   document.querySelector(".projects-container").innerHTML = "";
-  projectsArray.forEach((project) => {
+  const reversedProjectArray = [...projectsArray].reverse();
+
+  reversedProjectArray.forEach((project) => {
     const projectsContainer = document.querySelector(".projects-container");
     const li = document.createElement("li");
     li.className = "project";

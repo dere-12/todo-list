@@ -22,10 +22,11 @@ function renderLiElements(projectId) {
   const todosContainer = document.querySelector(".todos-container");
   const targetProject = getTargetProject(projectId);
   const todoArray = targetProject.todosArray;
+  const reversedTodoArray = [...todoArray].reverse();
 
   todosContainer.innerHTML = "";
 
-  todoArray.forEach((todo) => {
+  reversedTodoArray.forEach((todo) => {
     const li = document.createElement("li");
     li.className = "todo-list-item";
     li.innerHTML = `
